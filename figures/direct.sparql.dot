@@ -1,0 +1,10 @@
+digraph {
+  bgcolor="transparent" ;
+  rankdir="BT";
+  node [ color=white, fontcolor=white ] ;
+  edge [ color=white, fontcolor=white ] ;
+
+  X1XMA5 [label="up:X1XMA5"]
+  X1XMA5 -> go  label=< up:classifiedWith > ] ;
+  go  [ color="#42ffff", label=< <font color='#42ffff'>?go</font> > ] ;
+}

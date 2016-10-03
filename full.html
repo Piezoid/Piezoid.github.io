@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="css/pygment.css">
+
+		<!-- codemirror hilighting -->
+		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+		<link rel="stylesheet" href="http://codemirror.net/theme/ambiance.css">
+
+
+		<style>
+			img.drop {
+				box-shadow: 0px 0px 40px 0px #000 !important;
+				background: rgba(0,0,0,.5) !important;
+			}
+			.reveal .slide-number {
+				font-size: 1.5em;
+				border-radius: 0.25em;
+				bottom: 20px;
+				right: 10px;
+			}
+			.reveal .controls {
+				right: auto;
+				left: 10px;
+			}
+			.reveal .progress {
+				height: 10px;
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pd.reveal .progress {f.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section style="font-size: 50%;" data-background="./figures/bgaphid.jpg">
+					<h1>Création et analyse d'un réseau de régulation génique en RDF</h1>
+					<h2>Application au puceron</h2>
+					<p>
+						Maël Kerbiriou
+					</p>
+					<p>
+						<b>Tuteurs : </b>Denis Tagu (INRA) et Frabrice Legeai (INRIA)
+					</p>
+					<p>
+						<img class="plain drop" height="100px" src="figures/logo-inria.svg" />
+						<img class="plain drop" height="100px" src="figures/logoINRA.svg" />
+					</p>
+				</section>
+
+
+
+				<section data-background="./figures/bgaphid.jpg">
+					<h3>Réseau de régulation du puceron</h3>
+					<img class="plain stretch drop" src="./figures/xRNA.svg", height="auto">
+				</section>
+
+
+				<section data-background="./figures/bgrdf.svg" data-background-transition="zoom">
+					<h2>Technologies du Web Sémantique</h2>
+				</section>
+
+				<section data-transition="slide-in fade-out" data-background="./figures/bgrdf.svg">
+					<h3>RDF</h3>
+					<ul>
+						<li><em><strong>R</strong>esource <strong>D</strong>escription <strong>F</strong>ramework</em></li>
+						<li class="fragment">Un document est une collection de <strong>triplets</strong> : <br /><em>(sujet, predicat, objet)</em></li>
+						<li class="fragment">Les ressources sont identifiées par des <strong>URI</strong>s</li>
+					</ul>
+				</section>
+
+				<section data-background="./figures/bgrdf.svg">
+					<section>
+						<h3>RDF</h3>
+						<h4>Interprétation en graphe</h4>
+						<img class="plain stretch" src="./figures/example.svg", height="auto">
+					</section>
+					<section >
+						<h3>RDF</h3>
+						<h4>Syntaxe Turtle</h4>
+<div class="highlight"><pre style="width: 100%"><span></span><span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">rdf:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">rdfs:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">:</span><span class="w"> </span><span class="nv">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="nn">:</span><span class="nt">ACYPI087140-RA</span><span class="w"> </span><span class="nn">rdf:</span><span class="nt">type</span><span class="w"> </span><span class="nn">:</span><span class="nt">mRNA</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c"># la ligne suivante porte sur le même sujet :</span><span class="w"></span>
+<span class="w">                </span><span class="nn">rdfs:</span><span class="nt">label</span><span class="w"> </span><span class="s">&quot;ACYPI087140-RA&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
+<span class="w">                </span><span class="nn">:</span><span class="nt">has_cinetic</span><span class="w"> </span><span class="nn">:</span><span class="nt">diminution</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+
+<span class="c"># La ligne suivante aborde un nouveau sujet :</span><span class="w"></span>
+<span class="nn">:</span><span class="nt">ACYPI004799-RA</span><span class="w"> </span><span class="nn">rdf:</span><span class="nt">type</span><span class="w"> </span><span class="nn">:</span><span class="nt">mRNA</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="nn">rdfs:</span><span class="nt">label</span><span class="w"> </span><span class="s">&quot;ACYPI004799-RA&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="nn">:</span><span class="nt">has_foldChange</span><span class="w"> </span><span class="s">&quot;2.1&quot;</span><span class="o">^^</span><span class="ge">xsd:decimal</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+					</section>
+				</section>
+
+				<section data-background="./figures/bgrdf.svg">
+					<section>
+						<h3>SPARQL</h3>
+						<p>Language de requête</p>
+						<p class="fragment fade-in">pour l'extraction de sous-graphes par motifs : <br/>
+							<img class="plain stretch" src="./figures/example.sparql.svg", height="auto">
+						</p>
+					</section>
+
+					<section>
+						<h3>SPARQL</h3>
+						<p>Syntaxe inspirée du SQL</p>
+<div class="highlight fragment-fade-in"><pre><span class="k">PREFIX</span> <span class="p">:</span> <span class="nl">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span> <span class="p">.</span>
+<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span> <span class="p">.</span>
+
+<span class="k">SELECT</span> <span class="nv">?mRNA_Var</span> <span class="nv">?cinetic_Var</span>
+<span class="k">WHERE</span> <span class="p">{</span>
+    <span class="nv">?mRNA_Var</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="p">:</span><span class="nt">mRNA</span> <span class="p">;</span>
+              <span class="p">:</span><span class="nt">has_cinetic</span> <span class="nv">?cinetic_Var</span> <span class="p">.</span>
+
+    <span class="nv">?cinetic_Var</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="p">:</span><span class="nt">cinetic</span> <span class="p">.</span>
+<span class="p">}</span>
+</pre></div>
+					</section>
+				</section>
+
+
+
+
+
+
+				<section data-transition="slide-in fade-out">
+					<h3>AskOmics</h3>
+					<img src="./figures/integration.png" />
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h3>AskOmics</h3>
+					<img src="./figures/interrogation.png" />
+				</section>
+
+
+				<section data-transition="fade-out slide-in">
+					<h3>Motivations</h3>
+					<img src="figures/example.external.1.svg" class="plain stretch" />
+					<p class="fragment zoom-in"><em>nani gigantum humeris insidentes</em></p>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<h3>Motivations</h3>
+					<img src="figures/example.external.2.svg" class="plain stretch" />
+					<p class="fragment zoom-in">Intégrer des ressources externes</p>
+				</section>
+
+
+				<section data-background="./figures/bgrdf.svg" data-background-transition="zoom">
+					<section>
+						<h3>SPARQL</h3>
+						<h4>Fédération</h4>
+						<img src="figures/example.sparql.feder.svg" class="plain stretch"/>
+					</section>
+
+					<section>
+						<h3>SPARQL</h3>
+						<h4>Fédération</h4>
+						<p class="fragment zoom-in">Permet de mélanger des motifs sur des graphes locaux et distants de manière transparente</p>
+<div class="highlight"><pre style="width:100%;"><span></span><span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">owl</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2002/07/owl#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">up</span><span class="p">:</span> <span class="nl">&lt;http://purl.uniprot.org/core/&gt;</span>
+<span class="k">PREFIX</span> <span class="p">:</span> <span class="nl">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span>
+
+<span class="k">SELECT</span> <span class="nv">?mRNA</span> <span class="nv">?uniac</span>
+<span class="k">WHERE</span> <span class="p">{</span>
+    <span class="k">GRAPH</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span> <span class="p">{</span>
+        <span class="nv">?mRNA</span> <span class="p">:</span><span class="nt">has_UniProtAC</span> <span class="nv">?uniac</span> <span class="p">.</span>
+    <span class="p">}</span>
+
+    <span class="c"># Requête executée sur l&#39;endpoint UniProt</span>
+    <span class="k">SERVICE</span> <span class="nl">&lt;http://sparql.uniprot.org/&gt;</span> <span class="p">{</span>
+        <span class="nv">?uniac</span> <span class="nn">up</span><span class="p">:</span><span class="nt">classifiedWith</span> <span class="nv">?go</span> <span class="p">.</span>
+        <span class="nv">?go</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">owl</span><span class="p">:</span><span class="nt">Class</span> <span class="p">.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+					</section>
+				</section>
+				<section data-background="./figures/bgrdf.svg" data-background-transition="zoom">
+					<h3>SPARQL</h3>
+					<h4>Fédération</h4>
+					<p>Deux possibilités pour accéder aux ressources externes : </p>
+					<ol>
+						<li class="fragment">Interroger les ressources <em>via</em> la fédération sur demande</li>
+						<li class="fragment">Copier les données dans un graphe local pour ensuite les interroger</li>
+					</ol>
+					<p class="fragment zoom-in">&rarr; Évaluation des performances</p>
+				</section>
+
+
+				<section data-transition="slide-in fade-out">
+					<h3>Motivations</h3>
+					<img src="figures/example.external.3.svg" class="plain stretch" />
+					<p class="fragment zoom-in"><small>La <em>Gene Ontology</em> est un vocabulaire pour la classification d'entités biologiques</small></p>
+				</section>
+				<section data-transition="fade-in slide-out">
+					<h3>Motivations</h3>
+					<img src="figures/example.external.4.svg" class="plain stretch" />
+					<p class="fragment zoom-in"><small>Transitivité et reflexivité pour interpréter la <em>Gene Ontology</em></small></p>
+				</section>
+
+
+
+
+				<section>
+					<h2>Objectifs </h2>
+					<p>Développer dans AskOmics les fonctionalités pour
+						<ol>
+							<li class="fragment">Intégrer des ressources externes
+								<div class="fragment zoom-in"><ul>
+									<li><strong>Cas d'étude : Rapatriement des termes GO pour les mRNA à partir d'UniProt</strong></li>
+									<li><em>Benchmarks</em> : Fédération à la demande <em>vs.</em> copie dans une graphe local</li>
+									<li>Spécifications</li>
+								</ul></div>
+							</li>
+							<li class="fragment">Interroger avec la <em>Gene Ontology</em> (GO)
+								<div class="fragment zoom-in"><ul>
+									<li>Interroger les termes GO des entités</li>
+									<li>Sélectioner les entités par des termes GO</li>
+									<li><em>Benchmarks</em> pour la transitivité</li>
+								</ul></div>
+							</li>
+						</ol>
+					</p>
+				</section>
+
+				<section data-transition="fade-out slide-in">
+					<h2>Requêtes : Fédération</h2>
+					<p>Copie des annotations GO dans un graphe local</p>
+<div class="highlight"><pre style="font-size: 0.45em; width:100%;"><span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">rdfs</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">owl</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2002/07/owl#&gt;</span>
+<span class="k">PREFIX</span> <span class="nn">up</span><span class="p">:</span> <span class="nl">&lt;http://purl.uniprot.org/core/&gt;</span>
+<span class="k">PREFIX</span> <span class="p">:</span> <span class="nl">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span>
+
+<span class="k">INSERT</span> <span class="p">{</span> <span class="k">GRAPH</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span> <span class="p">{</span>
+    <span class="nv">?mRNA</span> <span class="p">:</span><span class="nt">has_UniProtAC</span> <span class="nv">?uniac</span> <span class="p">.</span>
+    <span class="nv">?uniac</span> <span class="p">:</span><span class="nt">has_GO</span> <span class="nv">?go</span> <span class="p">.</span>
+<span class="p">}</span> <span class="p">}</span>
+<span class="k">WHERE</span> <span class="p">{</span>
+    <span class="k">GRAPH</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span> <span class="p">{</span> <span class="c"># Dans le graph d&#39;AskOmics : </span>
+        <span class="nv">?mRNA</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="p">:</span><span class="nt">mRNA</span> <span class="p">.</span> <span class="c"># Sélectionne les ARNm</span>
+        <span class="c"># La variable ?mRNAmet capture les identifiants des ARNm avec le prefixe utilisé sur UniProt :</span>
+        <span class="k">BIND</span><span class="p">(</span> <span class="nf">IRI</span><span class="p">(</span> <span class="nf">REPLACE</span><span class="p">(</span> <span class="nf">str</span><span class="p">(</span><span class="nv">?mRNA</span><span class="p">),</span>
+            <span class="s">&quot;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&quot;</span><span class="p">,</span>
+            <span class="s">&quot;http://purl.uniprot.org/ensemblmetazoa/&quot;</span> <span class="p">))</span>
+        <span class="k">AS</span> <span class="nv">?mRNAmet</span> <span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">SERVICE</span> <span class="nl">&lt;http://sparql.uniprot.org/&gt;</span> <span class="p">{</span> <span class="c"># Requête executée sur l&#39;endpoint UniProt</span>
+        <span class="nv">?uniac</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">up</span><span class="p">:</span><span class="nt">Protein</span> <span class="p">;</span>
+               <span class="nn">rdfs</span><span class="p">:</span><span class="nt">seeAlso</span> <span class="nv">?mRNAmet</span> <span class="p">;</span>
+               <span class="nn">up</span><span class="p">:</span><span class="nt">classifiedWith</span> <span class="nv">?go</span> <span class="p">.</span>
+        <span class="nv">?go</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">owl</span><span class="p">:</span><span class="nt">Class</span> <span class="p">.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+				</section>
+
+
+				<section data-transition="fade">
+					<section>
+						<h2>Requêtes : GO</h2>
+						<p>Interrogation des termes GO</p>
+						<img src="figures/inter.direct.sparql.svg" class="plain stretch" />
+					</section>
+					<section>
+						<h2>Requêtes : GO</h2>
+						<p>Interrogation des termes GO</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="nv">?go_direct</span> <span class="k">FROM</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span>
+<span class="k">WHERE</span> <span class="p">{</span>
+    <span class="nn">up</span><span class="p">:</span><span class="nt">X1XMA5</span> <span class="p">:</span><span class="nt">has_GO</span> <span class="nv">?go_direct</span> <span class="p">.</span>
+<span class="p">}</span>
+</pre></div>
+					</section>
+				</section>
+
+				<section data-transition="fade">
+					<section>
+						<h2>Requêtes : GO</h2>
+						<p>Interrogation des termes GO (Avec transitivité)</p>
+						<img src="figures/inter.trans.sparql.svg" class="plain" height="400px" />
+						<img src="figures/GO.svg" class="plain fragment" height="400px"/>
+					</section>
+					<section>
+						<h2>Requêtes : GO</h2>
+						<p>Interrogation des termes GO (Avec transitivité)</p>
+	<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="nv">?go</span> <span class="k">FROM</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span>
+	<span class="k">WHERE</span> <span class="p">{</span>
+	    <span class="nn">up</span><span class="p">:</span><span class="nt">X1XMA5</span> <span class="p">:</span><span class="nt">has_GO</span> <span class="nv">?go_direct</span> <span class="p">.</span>
+	    <span class="nv">?go_direct</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">subClassOf*</span> <span class="nv">?go</span>  <span class="p">.</span>
+	<span class="p">}</span>
+	</pre></div>
+					<img src="figures/GO.svg" class="plain fragment" style="width: 500px"/>
+					</section>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<section>
+						<h2>Requêtes : GO</h2>
+						<p>Sélection des entités avec des GO termes</p>
+						<small>La transitivité est généralement souhaitée.</small>
+						<img src="figures/sel.trans.sparql.svg" class="plain stretch" />
+					</section>
+					<section>
+						<h2>Requêtes : GO</h2>
+						<p>Sélection des entités avec des GO termes</p>
+						<small>La transitivité est généralement souhaitée.</small>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="nv">?uniac</span> <span class="k">FROM</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span>
+<span class="k">WHERE</span> <span class="p">{</span>
+    <span class="nv">?uniac</span> <span class="p">:</span><span class="nt">has_GO</span> <span class="nv">?go</span> <span class="p">.</span>
+    <span class="nv">?go</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">subClassOf</span><span class="o">*</span> <span class="nn">og</span><span class="p">:</span><span class="nt">GO_0016021</span> <span class="p">.</span>
+<span class="p">}</span>
+</pre></div>
+					</section>
+				</section>
+
+				<section data-transition="fade-out slide-in">
+					<h2><em>BenchMarks</em></h2>
+					<ol>
+						<li class="fragment"><strong>Transitivité GO</strong><ul>
+							<li>Inférence <em>vs.</em> <em>Property Path</em></li>
+							<li>Transitivités montante et descendante : sélection et interrogation.</li>
+						</ul></li>
+						<li class="fragment"><strong>Fédération</strong><ul>
+							<li>Sur demande <em></li>
+							<li>vs.</em> Graphe local</li>
+						</ul></li>
+					</ol>
+				</section>
+
+
+				<section data-transition="fade-in slide-out">
+					<h3><em>Benchmarks</em> : Transitivité</h3>
+					<p>Intérogation des termes GO associés aux mRNA<p>
+					<img src='figures/GoBenchIntero.svg' class="plain" width="75%" />
+					<p class="fragment">Non significatif pour l'utilisateur</p>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h3><em>Benchmarks</em> : Transitivité</h3>
+					<p>Sélection des mRNA par termes GO associés<p>
+					<img src='figures/GoBenchSel.svg' class="plain" width="75%" />
+					<p class="fragment">Non significatif pour l'utilisateur</p>
+				</section>
+
+				<section data-transition="fade slide-in">
+					<h3><em>Benchmarks</em> : Fédération</h3>
+					<p><small>Intérogation et Sélection GO sur un graphe local <em>vs.</em> fédération à la demande</small></p>
+					<img src='figures/Feder.svg' class="plain" width="75%" />
+					<p class="fragment">Gain d'un facteur 1000x avec une copie locale !</p>
+				</section>
+
+
+				<section data-transition="slide-in fade-out">
+					<div class="fragment"><h2>Spécifications</h2>
+					<p>pour l'intégration de ressources externe</p></div>
+					<img class="plain" src="./figures/example.withonto.svg" width="2000px">
+				</section>
+
+
+				<section>
+					<h2>Contributions au code source</h2>
+					<img class="plain stretch" src="figures/contrib.png" />
+				</section>
+
+
+				<section>
+					<h2>Conclusion</h2>
+					<ul>
+						<li class="fragment">Copie dans un graphe locale<ul>
+							<li class="fragment">Performance : facteur 1000 comparé à la fédération sur demande</li>
+							<li class="fragment">Valide uniquement pour les requêtes qui parcourent tout le graphe</li>
+							<li class="fragment">Utile uniquement pour des interrogations répétées</li>
+						</ul></li>
+						<li class="fragment"><em>Property path</em> plus flexible et légèrement plus rapide que l'inférence</li>
+						<li class="fragment zoom-in" data-fragment-index="3">Diverses contributions au code source d'AskOmics</li>
+						<li class="fragment">Le développement continue dans AskOmics</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h1>Merci</h1>
+					<h2>pour votre attention</h2>
+					<p></p>
+					<p class="fragment">Questions ?</p>
+				</section>
+
+
+
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// The "normal" size of the presentation, aspect ratio will be preserved
+		    // when the presentation is scaled to fit different resolutions. Can be
+		    // specified using percentage units.""
+		    width: 960,
+		    height: 700,
+
+		    // Factor of the display size that should remain empty around the content
+		    margin: 0.1,
+
+		    // Bounds for smallest/largest possible scale to apply to content
+		    minScale: 0.2,
+		    maxScale: 1.5,
+
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+				slideNumber: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

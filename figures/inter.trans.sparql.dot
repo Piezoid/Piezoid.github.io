@@ -1,0 +1,17 @@
+digraph {
+  bgcolor="transparent" ;
+  rankdir="BT";
+  node [ color=white, fontcolor=white ] ;
+  edge [ color=white, fontcolor=white ] ;
+
+  X1XMA5 [label="up:X1XMA5"]
+  X1XMA5 -> go_direct [ label=< up:classifiedWith > ] ;
+  go_direct  [ color="#42ffff", label=< <font color='#42ffff'>?go_direct</font> > ] ;
+    go_direct -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+    go_direct -> go [ color="#cc9999", label=< <font color='#cc9999'>rdf:subClassOf*</font> > ] ;
+
+  go  [ color="#42ffff", label=< <font color='#42ffff'>?go</font> > ] ;
+    go -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+  Class [ color="#cc9999", label=< <font color='#cc9999'>rdfs:Class</font> > ]
+}

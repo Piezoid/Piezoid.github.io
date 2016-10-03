@@ -1,0 +1,23 @@
+@prefix : <http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix displaySetting: <http://www.irisa.fr/dyliss/rdfVisualization/display> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:mRNA a rdfs:Class .
+:cinetic a rdfs:Class .
+
+:ACYPI087140-RA rdf:type :mRNA ; # la ligne suivante porte sur le même sujet :
+                rdfs:label "ACYPI087140-RA" ; # le type "string" peut être omis
+                :has_cinetic :diminution .
+# La ligne suivant aborde un nouveau sujet :
+:ACYPI004799-RA rdf:type :mRNA ;
+                rdfs:label "ACYPI004799-RA" ;
+                :has_foldChange "2.1"^^xsd:decimal .
+
+:diminution a :cinetic .
+
+:has_cinetic rdf:type rdfs:Property ;
+             rdfs:domain :mRNA ;
+             rdfs:range :cinetic .

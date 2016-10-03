@@ -1,0 +1,16 @@
+digraph {
+    layout=circo
+    splines=true;
+    overlap=scalexy;
+    nodesep=0.6;
+    bgcolor="transparent"
+    node [ color=white, fontcolor=white ] ;
+    edge [ color=white, fontcolor=white ] ;
+
+
+    miRNA -> mRNA [ label = "sites de fixation" ]
+    piRNA -> mRNA [ label = "sites de fixation" ]
+    lncRNA -> miRNA [ label = "sites de fixation" ]
+    piRNA -> lncRNA [ label = "sites de fixation" ]
+    lncRNA -> mRNA [ label = "Relations de position" ]
+}

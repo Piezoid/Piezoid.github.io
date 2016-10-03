@@ -1,0 +1,41 @@
+digraph {
+bgcolor="transparent"
+node [ color=white, fontcolor=white ] ;
+edge [ color=white, fontcolor=white ] ;
+rankdir="BT";
+
+
+subgraph cluster_GO {
+    label = "Gene Ontology" ;
+    color=white ; fontcolor=white ;
+
+    0042131 [ color="#cc9999", label=< <font color='#cc9999'>go:0042131<br />thiamine phosphate phosphatase activity</font> > ] ;
+    0003993 [ color="#cc9999", label=< <font color='#cc9999'>go:0003993<br />acid phosphate phosphatase activity</font> > ] ;
+    0042578 [ color="#cc9999", label=< <font color='#cc9999'>go:0042578<br />phosphate phosphatase activity</font> > ] ;
+
+    0042131 -> 0003993 [ color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ];
+    0003993 -> 0042578 [ color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ];
+
+    0042131 -> 0042578 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+    0042131 -> 0042131 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+    0003993 -> 0003993 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+    0042578 -> 0042578 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+
+}
+
+Protein [ color="#cc9999", label=< <font color='#cc9999'>up:Protein</font> > ] ;
+mRNA [ color="#cc9999", label=< <font color='#cc9999'>:mRNA</font> > ]
+diminution [ label=< :diminution > ]
+
+X1XMA5 [ label = < up:X1XMA5 > ]
+  X1XMA5 -> Protein [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+  X1XMA5 -> 0042131 [ label="up:classifiedWith" ] ;
+
+
+
+ACYPI087140 [ label=< :ACYPI087140-RA > ]
+    ACYPI087140 -> diminution [ label=< :has_cinetic > ] ;
+    ACYPI087140 -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+    ACYPI087140 -> X1XMA5 [ label=< rdfs:seeAlso > ] ;
+
+}

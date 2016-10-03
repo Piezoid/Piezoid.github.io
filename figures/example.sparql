@@ -1,0 +1,10 @@
+  PREFIX : <http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#> .
+  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+  SELECT ?mRNA_Var ?cinetic_Var
+  WHERE {
+      ?mRNA_Var rdf:type :mRNA ;
+                :has_cinetic ?cinetic_Var .
+
+      ?cinetic_Var rdf:type :cinetic .
+  }

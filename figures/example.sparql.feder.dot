@@ -1,0 +1,29 @@
+digraph {
+  bgcolor="transparent" ;
+  rankdir="BT";
+  node [ color=white, fontcolor=white ] ;
+  edge [ color=white, fontcolor=white ] ;
+
+
+  mRNA_Var [ color="#42ffff", label=< <font color='#42ffff'>?mRNA</font> > ] ;
+      mRNA_Var -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+      mRNA_Var -> uniac [label="rdf:seeAlso"]
+
+
+
+  mRNA [ color="#cc9999", label=< <font color='#cc9999'>:mRNA</font> > ] ;
+  color=white;
+  fontcolor=white;
+
+  subgraph cluster_uniprot {
+    label = "SERVICE <http://sparql.uniprot.org/>"
+
+    uniac [ color="#42ffff", label=< <font color='#42ffff'>?uniac</font> > ] ;
+      uniac -> Protein [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+      uniac -> go [label= "up:classifiedWith"]
+    go [ color="#42ffff", label=< <font color='#42ffff'>?go</font> > ] ;
+      go -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+    Protein [ color="#cc9999", label=< <font color='#cc9999'>up:Protein</font> > ] ;
+    Class [ color="#cc9999", label=< <font color='#cc9999'>rdfs:Class</font> > ] ;
+  }
+}

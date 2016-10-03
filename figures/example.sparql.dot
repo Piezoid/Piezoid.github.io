@@ -1,0 +1,22 @@
+digraph {
+  bgcolor="transparent" ;
+  rankdir="BT";
+  node [ color=white, fontcolor=white ] ;
+  edge [ color=white, fontcolor=white ] ;
+
+
+    mRNA_Var [ color="#42ffff", label=< <font color='#42ffff'>?mRNA_Var</font> > ] ;
+        mRNA_Var -> cinetic_Var [ label=< :has_cinetic > ] ;
+        mRNA_Var -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+
+
+    mRNA [ color="#cc9999", label=< <font color='#cc9999'>:mRNA</font> > ] ;
+    color=white;
+    fontcolor=white;
+
+    cinetic_Var [ color="#42ffff" label=< <font color='#42ffff'>?cinetic_Var</font> > ] ;
+        cinetic_Var -> cinetic [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+    cinetic [ color="#cc9999", label=< <font color='#cc9999'>:cinetic</font> > ] ;
+}

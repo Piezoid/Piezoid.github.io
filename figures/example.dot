@@ -1,0 +1,20 @@
+digraph {
+ bgcolor="transparent";
+ rankdir="BT";
+ node [ color=white, fontcolor=white ] ;
+ edge [ color=white, fontcolor=white ] ;
+
+ACYPI087140 [ label=< :ACYPI087140-RA > ]
+   ACYPI087140 -> diminution [ label=< :has_cinetic ] ;
+   ACYPI087140 -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+
+ACYPI004799 [ label=< :ACYPI004799-RA > ]
+   ACYPI004799 -> "2.1^^xsd:decimal" [ color="#99cc99", label=< <font color='#99cc99'>:has_foldChange</font> > ] ;
+   ACYPI004799 -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+"2.1^^xsd:decimal" [ color="#99cc99", shape=rectangle, label=< <font color='#99cc99'>2.1^^xsd:decimal</font> > ]
+
+diminution [ label=< :diminution > ]
+mRNA [ color="#cc9999", label=< <font color='#cc9999'>:mRNA</font> > ]
+
+}

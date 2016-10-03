@@ -1,0 +1,98 @@
+digraph {
+bgcolor="transparent"
+node [ color=white, fontcolor=white ] ;
+edge [ color=white, fontcolor=white ] ;
+rankdir="BT";
+
+
+subgraph cluster_rdfs {
+    label = "Ontologie RDFS";
+    rank = "min" ;
+    color=white ; fontcolor=white
+    Property [ color="#cc9999", label=< <font color='#cc9999'>rdfs:Property</font> > ]
+    Property -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+    Class [ color="#cc9999", label=< <font color='#cc9999'>rdfs:Class</font> > ]
+}
+
+
+
+X1XMA5 [ label = < up:X1XMA5 > ]
+  X1XMA5 -> Protein [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+  X1XMA5 -> 0042131 [ label="up:classifiedWith" ] ;
+
+subgraph cluster_UniProt {
+  label = "Ontologie d'UniProt"
+  color=white ; fontcolor=white ;
+
+  Protein [ color="#cc9999", label=< <font color='#cc9999'>up:Protein</font> > ] ;
+    Protein -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+
+  classifiedWith [ color="#9999cc", label=< <font color='#9999cc'>up:classifiedWith</font> > ]
+      classifiedWith -> Class [ color="#9999cc", label=< <font color='#9999cc'>rdfs:range</font> > ] ;
+      classifiedWith -> Protein [ color="#9999cc", label=< <font color='#9999cc'>rdfs:domain</font> > ] ;
+      classifiedWith -> Property [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+}
+
+
+
+subgraph cluster_GO {
+    label = "Gene Ontology" ;
+    color=white ; fontcolor=white ;
+
+    0042131 [ color="#cc9999", label=< <font color='#cc9999'>go:0042131<br />thiamine phosphate phosphatase activity</font> > ] ;
+    0003993 [ color="#cc9999", label=< <font color='#cc9999'>go:0003993<br />acid phosphate phosphatase activity</font> > ] ;
+    0042578 [ color="#cc9999", label=< <font color='#cc9999'>go:0042578<br />phosphate phosphatase activity</font> > ] ;
+      0042578 -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+    0042131 -> 0003993 [ color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ];
+    0003993 -> 0042578 [ color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ];
+
+    0042131 -> 0042578 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+    0042131 -> 0042131 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+    0003993 -> 0003993 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+    0042578 -> 0042578 [ style="dashed", color="#cc9999", label=< <font color='#cc9999'>rdfs:subClassOf</font> > ] ;
+
+}
+
+
+
+subgraph cluster_onto {
+    label = "Ontologie d'AskOmics" ;
+    color=white;
+    fontcolor=white;
+
+    mRNA [ color="#cc9999", label=< <font color='#cc9999'>:mRNA</font> > ]
+    mRNA -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+    diminution [ label=< :diminution > ]
+        diminution -> cinetic [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+    cinetic [ color="#cc9999", label=< <font color='#cc9999'>:cinetic</font> > ]
+    cinetic -> Class [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+
+    has_cinetic [ color="#9999cc", label=< <font color='#9999cc'>:has_cinetic</font> > ]
+        has_cinetic -> cinetic [ color="#9999cc", label=< <font color='#9999cc'>rdfs:range</font> > ] ;
+        has_cinetic -> mRNA [ color="#9999cc", label=< <font color='#9999cc'>rdfs:domain</font> > ] ;
+        has_cinetic -> Property [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+}
+
+
+ACYPI087140 [ label=< :ACYPI087140-RA > ]
+    ACYPI087140 -> diminution [ label=< :has_cinetic > ] ;
+    ACYPI087140 -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+    ACYPI087140 -> X1XMA5 [ label=< rdfs:seeAlso > ] ;
+
+ACYPI004799 [ label=< :ACYPI004799-RA > ]
+   ACYPI004799 -> "2.1^^xsd:decimal" [ color="#99cc99", label=< <font color='#99cc99'>:has_foldChange</font> > ] ;
+   ACYPI004799 -> mRNA [ color="#cc9999", label=< <font color='#cc9999'>rdf:type</font> > ] ;
+   "2.1^^xsd:decimal" [ color="#99cc99", shape=rectangle, label=< <font color='#99cc99'>2.1^^xsd:decimal</font> > ]
+
+
+
+
+
+
+
+}
