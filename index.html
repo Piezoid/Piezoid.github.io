@@ -95,55 +95,20 @@
 
 
 				<section data-background="./figures/bgrdf.svg" data-background-transition="zoom">
-					<section>
+
 						<h3>Technologies du Web Sémantique</h3>
 						<h4>RDF : Interprétation en graphe</h4>
 						<img class="plain stretch" src="./figures/example.svg", height="auto">
-					</section>
-					<section >
-						<h3>RDF</h3>
-						<h4>Syntaxe Turtle</h4>
-<div class="highlight"><pre style="width: 100%"><span></span><span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="k">@prefix</span><span class="w"> </span><span class="nn">rdf:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="k">@prefix</span><span class="w"> </span><span class="nn">rdfs:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="k">@prefix</span><span class="w"> </span><span class="nn">:</span><span class="w"> </span><span class="nv">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
 
-<span class="nn">:</span><span class="nt">ACYPI087140-RA</span><span class="w"> </span><span class="nn">rdf:</span><span class="nt">type</span><span class="w"> </span><span class="nn">:</span><span class="nt">mRNA</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c"># la ligne suivante porte sur le même sujet :</span><span class="w"></span>
-<span class="w">                </span><span class="nn">rdfs:</span><span class="nt">label</span><span class="w"> </span><span class="s">&quot;ACYPI087140-RA&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
-<span class="w">                </span><span class="nn">:</span><span class="nt">has_cinetic</span><span class="w"> </span><span class="nn">:</span><span class="nt">diminution</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-
-<span class="c"># La ligne suivante aborde un nouveau sujet :</span><span class="w"></span>
-<span class="nn">:</span><span class="nt">ACYPI004799-RA</span><span class="w"> </span><span class="nn">rdf:</span><span class="nt">type</span><span class="w"> </span><span class="nn">:</span><span class="nt">mRNA</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="nn">rdfs:</span><span class="nt">label</span><span class="w"> </span><span class="s">&quot;ACYPI004799-RA&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">                </span><span class="nn">:</span><span class="nt">has_foldChange</span><span class="w"> </span><span class="s">&quot;2.1&quot;</span><span class="o">^^</span><span class="ge">xsd:decimal</span><span class="p">.</span><span class="w"></span>
-</pre></div>
-					</section>
 				</section>
 
 				<section data-background="./figures/bgrdf.svg">
-					<section>
 						<h3>SPARQL</h3>
 						<p>Language de requête</p>
 						<p class="fragment fade-in">pour l'extraction de sous-graphes par motifs : <br/>
 							<img class="plain stretch" src="./figures/example.sparql.svg", height="auto">
 						</p>
-					</section>
 
-					<section>
-						<h3>SPARQL</h3>
-						<p>Syntaxe inspirée du SQL</p>
-<div class="highlight fragment-fade-in"><pre><span class="k">PREFIX</span> <span class="p">:</span> <span class="nl">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span> <span class="p">.</span>
-<span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span> <span class="p">.</span>
-
-<span class="k">SELECT</span> <span class="nv">?mRNA_Var</span> <span class="nv">?cinetic_Var</span>
-<span class="k">WHERE</span> <span class="p">{</span>
-    <span class="nv">?mRNA_Var</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="p">:</span><span class="nt">mRNA</span> <span class="p">;</span>
-              <span class="p">:</span><span class="nt">has_cinetic</span> <span class="nv">?cinetic_Var</span> <span class="p">.</span>
-
-    <span class="nv">?cinetic_Var</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="p">:</span><span class="nt">cinetic</span> <span class="p">.</span>
-<span class="p">}</span>
-</pre></div>
-					</section>
 				</section>
 
 
@@ -159,46 +124,21 @@
 
 				<section data-transition="fade-out slide-in">
 					<h3>Motivations</h3>
-					<img src="figures/example.external.1.svg" class="plain stretch" />
+					<img src="figures/example.external_simple.1.svg" class="plain stretch" />
 					<p class="fragment zoom-in"><em>nani gigantum humeris insidentes</em></p>
 				</section>
 				<section data-transition="fade-in slide-out">
 					<h3>Motivations</h3>
-					<img src="figures/example.external.2.svg" class="plain stretch" />
+					<img src="figures/example.external_simple.2.svg" class="plain stretch" />
 					<p class="fragment zoom-in">Intégrer des ressources externes</p>
 				</section>
 
 
 				<section data-background="./figures/bgrdf.svg" data-background-transition="zoom" data-transition="fade-out slide-in">
-					<section>
 						<h3>SPARQL</h3>
 						<h4>Fédération</h4>
 						<img src="figures/example.sparql.feder.svg" class="plain stretch"/>
-					</section>
 
-					<section>
-						<h3>SPARQL</h3>
-						<h4>Fédération</h4>
-						<p class="fragment zoom-in">Permet de mélanger des motifs sur des graphes locaux et distants de manière transparente</p>
-<div class="highlight"><pre style="width:100%;"><span></span><span class="k">PREFIX</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
-<span class="k">PREFIX</span> <span class="nn">owl</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2002/07/owl#&gt;</span>
-<span class="k">PREFIX</span> <span class="nn">up</span><span class="p">:</span> <span class="nl">&lt;http://purl.uniprot.org/core/&gt;</span>
-<span class="k">PREFIX</span> <span class="p">:</span> <span class="nl">&lt;http://www.semanticweb.org/irisa/ontologies/2016/1/igepp-ontology#&gt;</span>
-
-<span class="k">SELECT</span> <span class="nv">?mRNA</span> <span class="nv">?uniac</span>
-<span class="k">WHERE</span> <span class="p">{</span>
-    <span class="k">GRAPH</span> <span class="nl">&lt;urn:sparql:tests-askomics&gt;</span> <span class="p">{</span>
-        <span class="nv">?mRNA</span> <span class="p">:</span><span class="nt">has_UniProtAC</span> <span class="nv">?uniac</span> <span class="p">.</span>
-    <span class="p">}</span>
-
-    <span class="c"># Requête executée sur l&#39;endpoint UniProt</span>
-    <span class="k">SERVICE</span> <span class="nl">&lt;http://sparql.uniprot.org/&gt;</span> <span class="p">{</span>
-        <span class="nv">?uniac</span> <span class="nn">up</span><span class="p">:</span><span class="nt">classifiedWith</span> <span class="nv">?go</span> <span class="p">.</span>
-        <span class="nv">?go</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">owl</span><span class="p">:</span><span class="nt">Class</span> <span class="p">.</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-					</section>
 				</section>
 				<section data-background="./figures/bgrdf.svg" data-transition="fade-in slide-out">
 					<h3>SPARQL</h3>
