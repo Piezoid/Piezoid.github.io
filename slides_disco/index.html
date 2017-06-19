@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Linking genomic variant discovered by discoSNP</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../slides_common/css/reveal.css">
+    <link rel="stylesheet" href="../slides_common/css/theme/blood.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../slides_common/css/pygment.css">
+
+    <!-- Printing and PDF exports, at least i tried -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../slides_common/css/print/pdf.css' : '../slides_common/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+    <style>
+        img.drop {
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8), 0px 0px 10px rgba(0, 0, 0, 0.9), 0px 0px 20px #000 !important;
+            padding: 10px;
+            background: rgba(0, 0, 0, .75) !important;
+        }
+        
+        .reveal h4 {
+            font-variant: small-caps;
+            text-transform: none;
+        }
+        
+        .reveal .slide-number {
+            font-size: 1.5em;
+            border-radius: 0.25em;
+            bottom: 20px;
+            right: 10px;
+        }
+        
+        .reveal .controls {
+            right: auto;
+            left: 10px;
+        }
+        
+        .reveal .progress {
+            height: 10px;
+        }
+        
+        .title-slide h1,
+        .title-slide h2 {
+            text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15), 0 0 50px black, 0 0 10px black, 0 0 30px black, 0 0 50px black;
+        }
+        
+        .title-slide p {
+            font-size: 24pt;
+            text-shadow: 0 0 5px black, 0 0 10px black, 0 0 20px black;
+        }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../slides_common/css/print/pd.reveal .progress {f.css' : '../slides_common/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="../slides_common/lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+
+
+            <section class="title-slide" style="font-size: 50%;" data-background="./figures/bgaphid4.jpg" data-transition="fade-out">
+                <h1>Linking genomic variants discovered by DiscoSnp</h1>
+                <p>
+                    Maël Kerbiriou
+                </p>
+                <p>
+                    <b>Tutors : </b>Pierre Peterlongo, Claire Lemaitre
+                </p>
+                <p>
+                    <img class="plain drop" height="100px" src="figures/logo-inria.svg" />
+                    <img class="plain" height="270px" style="margin: 0 -50px -60px -50px" src="figures/logo_genscale.png" />
+                    <img class="plain drop" height="100px" src="figures/rennes1.svg" />
+                </p>
+                <aside class="notes">
+                    <ul>
+                        <li>Liaison de variants détectés par discoSNP</li>
+                    </ul>
+                </aside>
+            </section>
+
+
+            <section data-transition="fade-in">
+                <h3>Genetic variation</h3>
+                <ul>
+                    <li>Single Nucleotide Polymorphisms (SNPs)</li>
+                    <li>Insertion / Deletions </li>
+                    <li class="fragment red">Inversions, structural variants, ...</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>Modifications de l'ADN spécifiques aux individus, souche</li>
+                        <li>Plus spécifiquement, mon sujet porte sur deux types, les modifications d'une base (SNP)</li>
+                        <li>Retrait ou l'ajout de bases (InDel)</li>
+                        <li>Applications: Associations de phénotypes, fingerprinting</li>
+                        <li>outro: suivant que l'on dispose d'un génome de référence il existe plusieurs méthodes pour la détection de variants</li>
+                    </ul>
+                </aside>
+            </section>
+
+
+            <section data-transition="fade-out">
+
+                <h3>Methods for variant calling</h3>
+                <h4>with a reference genome</h4>
+
+                <ol>
+                    <li>Align reads on the reference</li>
+                    <li>Tools for calling SNP from deviations to the reference<br \><small>(<i>e.g.</i> GATK)</small></li>
+                </ol>
+
+                <p class="fragment highlight-red">Dependant on the availability and quality of assembly.</p>
+                <aside class="notes">
+                    <ul>
+                        <li>GATK: majorité les études d'association chez l'humain</li>
+                    </ul>
+                </aside>
+
+            </section>
+
+            <section data-transition="fade-in">
+
+                <h3>Methods for variant calling</h3>
+                <h4>without reference genome</h4>
+                <ul>
+                    <li>Construct a reference or partial assemblies<br \><small>(<i>e.g.</i> DISCOVAR)</small></li>
+                    <li class="fragment" data-fragment-index="1">Other methods are based on de Bruijn Graphs</li>
+                </ul>
+                <p class="fragment" data-fragment-index="1">including <i>DiscoSnp</i></p>
+            </section>
+
+
+            <section>
+                <h3>DiscoSnp <small>uses</small></h3>
+                <h4>A de Bruijn Graph</h4>
+                <p style="font-size: 18pt">is a directed graph with :
+                    <ul style="font-size: 18pt">
+                        <li>Sub-strings of length k as vertices (<i>k-mers</i>) :<br \> \(V \in \{A,\,C,\,G,\,T\}^{k}\)</li>
+                        <li>edges between vertices sharing k-1 nucleotides :<br \> \(E=\left\{ (u,v)\;|\;(u,\,v)\in V^{2},\,\textrm{suf}_{k-1}(u)=\textrm{pre}_{k-1}(v)\right\} \)</li>
+                    </ul>
+                </p>
+                <img class="plain stretch" src="./figures/1bubble.svg" height="auto">
+                <aside class="notes">
+                    <ul>
+                        <li>Un graph oritenté utilisé pour l'assemblage</li>
+                        <li>Vertices: k-mer construit avec un fenêtre glissante sur les reads</li>
+                        <li>Deux vertices sont connecté lorsqu'il partagent un (k-1)-mer (relation de prefixes-suffixes qui oriente l'arrête)</li>
+                        <li>Un chemin correspond à un séquence (d'où l'utilité pour l'assemblage)</li>
+                        <li>Chemin simple: unitigs</li>
+                        <li>Usage détourné par discosnp: recherche de motifs de bulle</li>
+                        <li>sorties: deux chemins de la bulles, extension des unitigs</li>
+                        <li>Notation: unitigs partagent un (k-1)-mer acvec les bullex (à droite TTC)</li>
+                    </ul>
+                </aside>
+            </section>
+
+
+            <section data-transition="fade-out">
+                <h3>DiscoSnp</h3>
+                <h4>Pipeline</h4>
+                <img class="plain stretch" src="./figures/workflow_simple.png" height="auto">
+                <div class="fragment fade-in">
+                    <h4>Limitations</h4>
+                    <ul>
+                        <li>The positions of variants relative to each other is not known</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Les bulles sont dans le désordre sans info de position</li>
+                        </ul>
+                    </aside>
+                </div>
+
+            </section>
+
+            <section data-transition="fade-in">
+                <h3>DiscoSnp</h3>
+                <h4>Pipeline</h4>
+                <img class="plain stretch" src="./figures/workflow_withref.png" height="auto">
+            </section>
+
+
+            <section>
+                <h3>DiscoSnp</h3>
+                <h4>Limitations</h4>
+                <ul>
+                    <li>The positions of variants relative to each other is not known <small>(unless we have a reference genome)</small></li>
+                    <li class="fragment" data-fragment-index="2">Redundancy for polymorphic sites with more than two states</li>
+                </ul>
+                <img class="plain fragment" data-fragment-index="2" style="width: 95%;" src="./figures/tristate_bubbles.svg" height="auto">
+                <aside class="notes">
+                    <ul>
+                        <li>Cas le plus simple de redondance</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <h3>Objectives</h3>
+                <ul>
+                    <li>Link variants together, providing relative position informations,</li>
+                    <li>and reduce the redundancy in the output caused by more than two states per loci.</li>
+                    <li>Validate !</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li><i>Ne pas expliquer la validation!</i></li>
+                    </ul>
+                </aside>
+                <img class="plain stretch" src="./figures/workflow.png" height="auto">
+            </section>
+
+            <section data-transition="fade-out">
+                <h3>Linking variants</h3>
+                <h4>by unitigs</h4>
+                <img class="plain stretch" src="./figures/2bubbles.svg" height="auto">
+                <aside class="notes">
+                    <ul>
+                        <li>Indel: expliquer</li>
+                        <li>Cependant cette approche ne fonction plus lorsque des bulles se superposent</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section data-transition="fade-in">
+                <h3>Linking variants</h3>
+                <h4>Overlapping bubbles</h4>
+                <img class="plain stretch" src="./figures/bubbles_overlap.svg" height="auto">
+                <aside class="notes">
+                    <ul>
+                        <li>Les bulles se supérposent car distante de moins de k (ici 4) et...</li>
+                        <li>L'unitig droite de l'indel (AGCAG) se trouve dans le chemin des bulles du SNP</li>
+                        <li>Par construction du graphe, il suffit de trouver le (k-1)-mer extreme de l'unitig (CAG)</li>
+                        <li>outro: cette méthode couvre aussi le cas précédent</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section data-transition="fade-in">
+                <h3>Linking variants</h3>
+                <h4>Method overview</h4>
+                <img class="plain stretch" src="./figures/bubbles_full.svg" height=a wrapper for using GATB in python "auto">
+                <aside class="notes">
+                    <ul>
+                    </ul>
+                </aside>
+            </section>
+
+            <section data-transition="fade-out">
+                <h3>Validation</h3>
+                <ul>
+                    <li>Halfway done</li>
+                    <li>Simulated read-set from the first 5Mbp from the chr1 of <i>H. sapiens</i><br \>+ SNPs from 2 individuals of the 1000 Genomes Project</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>Pas fini car il reste encore 1 mois</li>
+                        <li>k=31</li>
+                    </ul>
+                </aside>
+                <img class="plain stretch" src="./figures/workflow.png" height="auto">
+            </section>
+
+
+            <section data-transition="fade-in fade-out">
+                <h3>Validation</h3>
+
+                <ul style="font-size:16pt">
+                    <li>7976 SNP + 681 Indels</li>
+                    <li>6566 overlaps between 7386 bubbles</li>
+                    <li>1444 polymorphics contig with at least 2 bubbles</li>
+                </ul>
+                <h4>Length of polymorphic contigs</h4>
+                <img class="plain stretch" src="./figures/chr1_contig_lengths.png" height="auto">
+                <aside class="notes">
+                    <ul>
+                        <li>8500 bulles</li>
+                        <li>6600 recouvrement entre 7400 bulles</li>
+                        <lI>1400 contigs polymorphic avec au moins 2 bulles</li>
+                    </ul>
+                </aside>
+            </section>
+
+
+            <section data-transition="fade-in fade-out">
+                <section>
+                    <h3>Validation</h3>
+                    <h4>Comparison of SNP positions<small>Validation shown in the report</small></h4>
+                    <p style="font-size:18pt;">77.7% of positions agree with the alignement on the reference</p>
+                    <div class="fragment">
+                        <h4>Aligning polymorphic contigs on the reference</h4>
+                        <p style="font-size:18pt;">81% of the 1444 polymorphic contigs maps with more 95% of base matches</p>
+                        <img class="plain" style="width: 60%;" src="./figures/contig_map_hist.svg" height="auto" />
+                    </div>
+                </section>
+
+
+
+                <section>
+                    <h3>Validation</h3>
+                    <h4>Comparison of SNP positions<small>Validation shown in the report</small></h4>
+                    <p style="font-size:18pt;">77.7% of positions agree with the alignement on the reference</p>
+                    <img class="plain" style="width: 60%;" src="./figures/chr1_mismatch.png" height="auto">
+                    <ul style="font-size:18pt;">
+                        <li>7.9% are mispositioned by a few base pairs</li>
+                        <li>14.9% are aligned on different genomic regions or on the opposite strand</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section data-transition="fade-in slide-out">
+                <h3>Experiment</h3>
+                <h4>RAD-seq</h4>
+                <p>Heliconius melpomena</p>
+                <img class="plain stretch" src="./figures/melpo_contig_lengths.png" height="auto">
+                <aside class="notes">
+                    <ul>
+                        <li>Le RAD échantillone régions génomique qui ne se recouvrent pas</li>
+                        <li>k=31</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section data-transition="fade-out slide-in">
+                <h3>Future works</h3>
+                <h4>Short-term</h4>
+                <ul>
+                    <li>Better characterisation of failure modes</li>
+                    <li>More stringent filters for linking bubbles</li>
+                    <li>Integration in the pipeline, documentation</li>
+                </ul>
+                <div class="fragment">
+                    <p><br /></p>
+                    <h4>Perspectives</h4>
+                    <ul>
+                        <li>Align reads on the polymorphic contigs</li>
+                        <li>Phase variants</li>
+                        <img class="plain" style="width: 95%;" src="./figures/2bubbles_phasing.svg" height="auto">
+                    </ul>
+                </div>
+            </section>
+
+            <section data-transition="fade-out slide-in">
+                <h3>Contributions</h3>
+                <ul>
+                    <li><b>Method for linking bubbles based on (k-1)-mer</b></li>
+                    <li>pyGATB: a python library for interactive manipulation of dBGs</li>
+                    <li>Various contributions to discoSNP code (tests, debugging, refactoring)</li>
+                </ul>
+            </section>
+
+            <section>
+                <section class="title-slide" data-background="./figures/rdbg_bg.svg" data-background-transition="fade-out">
+                    <h1>Thanks !</h1>
+                    <h2>Any questions ?</h2>
+
+                </section>
+                <section class="title-slide" data-background="./figures/rdbg.svg" data-background-transition="fade-out">
+                </section>
+            </section>
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <script src="../slides_common/lib/js/head.min.js"></script>
+    <script src="../slides_common/js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            // The "normal" size of the presentation, aspect ratio will be preserved
+            // when the presentation is scaled to fit different resolutions. Can be
+            // specified using percentage units.""
+            width: 960,
+            height: 700,
+
+            // Factor of the display size that should remain empty around the content
+            margin: 0.1,
+
+            // Bounds for smallest/largest possible scale to apply to content
+            minScale: 0.2,
+            maxScale: 1.5,
+
+            controls: true,
+            progress: true,
+            history: true,
+            center: false,
+            slideNumber: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            }, {
+                src: '../slides_common/plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: '../slides_common/plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: '../slides_common/plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: '../slides_common/plugin/notes/notes.js',
+                async: true
+            }]
+        });
+    </script>
+
+</body>
+
+</html>
