@@ -1,0 +1,348 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>modification minimap2</title>
+
+		<link rel="stylesheet" href="../slides_common/css/reveal.css">
+		<link rel="stylesheet" href="../slides_common/css/theme/white.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../slides_common/css/print/pdf.css' : '../slides_common/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			.reveal .slide-number { font-size: 15px; }
+			.reveal .progress { height: px; }
+
+			.noupper { text-transform: none !important; }
+			object { width: 100%; }
+			.twothird { width: 66%; }
+			.reveal pre.cmd { 
+				position: absolute; 
+				top: 2.5em; right: 0;  
+				font-size: 50%;
+				width:auto; 
+				padding: 0.25em; 
+			}
+			.reveal section img {
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Reference & annotations based</h2>
+					<h1> <span class="noupper">mRNA</span> splicing</h1>
+					<h3 class="noupper">An extension to minimap2's alignment algorithm</h3>
+					<p>
+						<small>Maël Kerbiriou @ BONSAI</small>
+					</p>
+				</section>
+
+				<section>
+					<h3>Minimap2</h3>
+					<ul>
+						<li>While minimap1 was initally a <span class="fragment grow highlight-current-red" data-fragment-index="1">mapper</span>,
+							<small>looking for colinear chains of anchors (minimizers),</small></li>
+							<span class="fragment" data-fragment-index="1">⇒ Only reports positions, not the base-level alignements</span>
+						</li>
+						<li class="fragment">minimap2 augments the mapping by performing 
+							<span style="color: #ff2c2d;">alignments</span> for each region between mapped anchors.</li>
+					</ul>	
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<h3>Gapped alignment scoring</h3>
+					<p>Needleman–Wunsch algorithm finds the best scoring alignement.</p>
+					<p>Scoring function take into account:
+						<ul>
+							<li>Matchs/mismatchs</li>
+							<li><span class="fragment highlight-red" data-fragment-index="1">gaps</span>: deletion/insertion.</li>
+						</ul>
+					</p>
+					<span class="fragment" data-fragment-index="1">The score penalty for gaps is the sum of:
+						<ul>
+							<li>initial cost: $O$</li>
+							<li>elongation cost: $l \cdot E$</li>
+						</ul>  
+					</span>
+			</section>
+
+				<section data-transition="fade-in fade-out">
+					<h3>Gapped alignment scoring</h3>
+					<h4>2-pieces affine score</h4>
+					<pre class="cmd">-x splice -un</pre>
+					<small>$$\begin{align*}
+							\textrm{gap_penalty} & =\min\left(\begin{array}{cc}
+							O_{1}+l \cdot E_{1}, & \textrm{(deletion)}\\
+							O_{2} & \textrm{(intron)}
+							\end{array}\right)
+							\end{align*}$$</small>
+					<object class="twothird" data="assets/gcost.svg"></object>
+					<small class="fragment">Not the default splicing mode in minimap !</small>
+					<aside class="notes">
+						default params: -O2,32 -E1,0 -C9
+					</aside>
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<h4>Naive splice mode</h4>
+					<pre class="cmd">-x splice -un</pre>
+					<img class="stretch" src="assets/igv_un.png" />
+					<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
+					<aside class="notes">
+						<p>chr17:34,602,132-34,602,354 rnf5, ring finger protein 5, 2nd intron, un=2, ub=6, ui=25</p>
+					</aside>
+				</section>
+
+				<section data-transition="zoom-in fade-out">
+					<h3>Spliceosomal consensus sequences</h3>
+					<p>Looking at the 3 bases flanking the introns</p>
+					<object data="assets/intron.svg"></object>
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<h3>Flanking sequences frequencies</h3>
+					<p>Donor sequences in RefSeq's introns, compared to those found with naive splice mode</p>
+					<pre class="cmd">-x splice -un</pre>
+					<object data="assets/pieceGP_donors.svg"></object>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+						<h3>Flanking sequences frequencies</h3>
+						<p>Acceptors sequences in RefSeq's introns, compared to those found with naive splice mode</p>
+					<pre class="cmd">-x splice -un</pre>
+					<object data="assets/pieceGP_acceptors.svg"></object>
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<h3>Splice patterns detection</h3>
+					<pre class="cmd">-x splice</pre>
+					<object data="assets/intron.svg"></object>
+				</section>
+
+
+				<section data-transition="fade-in fade-out">
+					<h3>2-pieces affine score</h3>
+					<h4>with splice patterns detection</h4>
+					<pre class="cmd">-x splice</pre>
+					<small>
+						$$\begin{align*}
+							\textrm{gap_penalty} & =\min\left(\begin{array}{cc}
+							O_{1}+l \cdot E_{1}, & \textrm{(deletion)}\\
+							O_{2}+O_{\textrm{open}}+O_{\textrm{close}} & \textrm{(intron)}
+							\end{array}\right)\\
+							O_{\textrm{open}} & =\begin{cases}
+							0 & \mathit{if}\textrm{ GT[AG] (fw) }\mathit{or}\textrm{ CT[AG] (rev)}\\
+							C/2 & \mathit{if}\textrm{ GT[CT] (fw) }\mathit{or}\textrm{ CT[CT] (rev)}\\
+							C & \mathit{otherwise}
+							\end{cases}\\
+							O_{\textrm{close}} & =\begin{cases}
+							0 & \mathit{if}\textrm{ [CT]AG (fw) }\mathit{or}\textrm{ [CT]AC (rev)}\\
+							C/2 & \mathit{if}\textrm{ [AG]AG (fw) }\mathit{or}\textrm{ [AG]AC (rev)}\\
+							C & \mathit{otherwise}
+							\end{cases}
+						\end{align*}$$
+					</small>
+					<aside class="notes">
+							default params: -O2,32 -E1,0 -C9
+					</aside>
+				</section>
+
+
+				<section data-transition="fade-in fade-out">
+					<section>
+						<h3>Splice mode</h3>
+						<pre class="cmd">-x splice</pre>
+						<img class="stretch" src="assets/igv_ub.png" />
+						<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
+					</section>
+
+					<section>
+						<h3>Naive splice mode</h3>
+						<pre class="cmd">-x splice -un</pre>
+						<img class="stretch" src="assets/igv_un.png" />
+						<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
+					</section>
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<h3>Flanking sequences frequencies</h3>
+					<p>Donor sequences of introns found with splice mode</p>
+					<pre class="cmd">-x splice</pre>
+					<object data="assets/patternGP_donors.svg"></object>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h3>Flanking sequences frequencies</h3>
+					<p>Acceptor sequences of introns found with splice mode</p>
+					<pre class="cmd">-x splice</pre>
+					<object data="assets/patternGP_acceptors.svg"></object>
+				</section>
+
+
+
+				<section data-transition="slide-in fade-out">
+					<h3>2-pieces affine score</h3>
+					<h4>with patterns & annotations</h4>
+					<pre class="cmd">-x splice -u introns.bed</pre>
+					<small>
+						$$\begin{align*}
+							\textrm{gap_penalty} & =\min\left(\begin{array}{cc}
+							O_{1}+l \cdot E_{1}, & \textrm{(deletion)}\\
+							O_{2}+O_{\textrm{open}}+O_{\textrm{close}} & \textrm{(intron)}
+							\end{array}\right)\\
+							O_{\textrm{open}} & =\begin{cases}
+							-C/2 & \mathit{if} \in \textrm{ref}_\textrm{open}\\
+							0 & \mathit{if}\textrm{ GT[AG] (fw) }\mathit{or}\textrm{ CT[AG] (rev)}\\
+							C/2 & \mathit{if}\textrm{ GT[CT] (fw) }\mathit{or}\textrm{ CT[CT] (rev)}\\
+							C & \mathit{otherwise}
+							\end{cases}\\
+							O_{\textrm{close}} & =\begin{cases}
+							-C/2 & \mathit{if} \in \textrm{ref}_\textrm{close}\\
+							0 & \mathit{if}\textrm{ [CT]AG (fw) }\mathit{or}\textrm{ [CT]AC (rev)}\\
+							C/2 & \mathit{if}\textrm{ [AG]AG (fw) }\mathit{or}\textrm{ [AG]AC (rev)}\\
+							C & \mathit{otherwise}
+							\end{cases}
+						\end{align*}$$
+					</small>
+					<aside class="notes">
+							default params: -O2,32 -E1,0 -C9
+					</aside>						
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<section>
+						<h3>Splice mode with annotation</h3>
+						<pre class="cmd">-x splice -u introns.bed</pre>
+						<img class="stretch" src="assets/igv_ubui.png" />
+						<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
+					</section>
+
+					<section>
+						<h3>Splice mode</h3>
+						<pre class="cmd">-x splice</pre>
+						<img class="stretch" src="assets/igv_ub.png" />
+						<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
+					</section>
+	
+					<section>
+						<h3>Naive splice mode</h3>
+						<pre class="cmd">-x splice -un</pre>
+						<img class="stretch" src="assets/igv_un.png" />
+						<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
+					</section>
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<h3>Flanking sequences frequencies</h3>
+					<p>Donor sequences of introns found with annotations</p>
+					<pre class="cmd">-x splice -u introns.bed</pre>
+					<object data="assets/hybridGP_donors.svg"></object>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h3>Flanking sequences frequencies</h3>
+					<p>Donor sequences of introns found with annotations</p>
+					<pre class="cmd">-x splice -u introns.bed</pre>
+					<object data="assets/hybridGP_acceptors.svg"></object>
+				</section>
+				
+				<section data-transition="slide-in fade-out">
+						<h4>Other metrics</h4>
+						<h3>Support</h3>
+					<object data="assets/support_sch.svg"></object>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h4>Other metrics</h4>
+					<h3>Support</h3>
+					<p><small>(cumulative)</small> Histogram of introns with support $\geq c$</h5>
+					<object data="assets/support.svg"></object>
+				</section>
+
+
+				<section data-transition="slide-in fade-out">
+					<h4>Other metrics</h4>
+					<h3>Distances between splicing sites</h3>
+					<object data="assets/delta_sch.svg"></object>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h4>Other metrics</h4>
+					<h3>Distances between splicing sites</h3>
+					<object data="assets/delta.svg"></object>
+				</section>
+
+				<section data-transition="slide-in fade-out">
+						<h3>Implementation details</h3>
+						<p>Two input formats for annotations:<ul>
+								<li>BED: intron intervals (0-based, $[s, e)$)</li>
+								<li>TSV: unpaired splicing sites<ul>
+									<li><pre>chr10	10741603	L</pre></li>
+									<li>'<em>L</em>'eft: last base of previous exon</li>
+									<li>'<em>R</em>'ight: last base of the intron</li>
+								</ul></li>
+							</ul></p>
+						<pre>
+sequence   : X X X G T A G X X
+intron/exon: e e e i i i i e e
+coordinates: 0 1 2 3 4 i 5 6 7
+        TSV: . . L . . . R . .
+        BED: . . . [ . . . ) .</pre>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h3>Implementation details</h3>
+					<ul>
+						<li><a href="https://github.com/Piezoid/minimap2">https://github.com/Piezoid/minimap2</a><br/>
+						<small>Will also release the analysis notebook.</small></li>
+						<li class="fragment">Pull request: 							<span class="diffstat" id="diffstat">
+								<span style="color: #28a745;">
+								  +199
+								</span>
+								<span style="color: #cb2431;">
+								  −26
+								</span><br />
+							  </span><small>H.Li interested by the idea but not the implementation</small></li>
+						<li class="fragment"><small>Some contorsions for passing the annotations down to the SSE routines (tagging the reference sequence)</small></li>
+						<li class="fragment"><small>Hybrid mode: Had to mask annotations on the opposite strand while infering the transcript orientation</small></li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../slides_common/lib/js/head.min.js"></script>
+		<script src="../slides_common/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				history: true,
+				controls: false,
+				math: {
+					mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+				dependencies: [
+					{ src: '../slides_common/plugin/math/math.js', async: true },
+					{ src: '../slides_common/plugin/notes/notes.js', async: true },
+					
+				]
+			});
+			Reveal.configure({ slideNumber: 'c/t' });
+		</script>
+	</body>
+</html>
