@@ -20,8 +20,9 @@
 		<style>
 			.reveal .slide-number { font-size: 15px; }
 			.reveal .progress { height: px; }
+			.reveal .baseline, .reveal .baseline * { vertical-align: baseline; }
+			.reveal .noupper { text-transform: none; }
 
-			.noupper { text-transform: none !important; }
 			object { width: 100%; }
 			.twothird { width: 66%; }
 			.reveal pre.cmd { 
@@ -222,7 +223,7 @@
 
 				<section data-transition="fade-in fade-out">
 					<section>
-						<h3>Splice mode with annotation</h3>
+						<h3>Splice mode with annotations</h3>
 						<pre class="cmd">-x splice -u introns.bed</pre>
 						<img class="stretch" src="assets/igv_ubui.png" />
 						<small style="float:right;">Dataset 3, chr17:34,602,132-34,602,354</small>
@@ -306,19 +307,37 @@ coordinates: 0 1 2 3 4 i 5 6 7
 					<ul>
 						<li><a href="https://github.com/Piezoid/minimap2">https://github.com/Piezoid/minimap2</a><br/>
 						<small>Will also release the analysis notebook.</small></li>
-						<li class="fragment">Pull request: 							<span class="diffstat" id="diffstat">
+						<li class="fragment">Pull request:
 								<span style="color: #28a745;">
 								  +199
 								</span>
 								<span style="color: #cb2431;">
 								  −26
 								</span><br />
-							  </span><small>H.Li interested by the idea but not the implementation</small></li>
+							  <small>H.Li interested by the idea but not the implementation</small></li>
 						<li class="fragment"><small>Some contorsions for passing the annotations down to the SSE routines (tagging the reference sequence)</small></li>
 						<li class="fragment"><small>Hybrid mode: Had to mask annotations on the opposite strand while infering the transcript orientation</small></li>
 					</ul>
 				</section>
 
+
+				<section data-transition="slide-in fade-out">
+					<h2>Perspectives</h2>
+					<small style="float: right;">@ UCSC, used by RE Workman<em> et al.</em></small>
+					<h3>FLAIR</h3>
+					<img class="stretch" src="https://raw.githubusercontent.com/BrooksLabUCSC/flair/master/misc/flair_workflow.png" />
+				</section>
+
+				<section data-transition="fade-in fade-out">
+					<h2>Perspectives</h2>
+					<p><small>What we missed:</small> “In the presence of noise, confidence from $N$ observations is proportional to $\sqrt{N}$”</p>
+					<ul class="baseline">
+						<li class="fragment">Responsibility problem: <small>Corrector ? Aligner ? Isoforms clutering ?</small></li>
+						<li class="fragment">Isoforms inference as a global optimization problem. <small style="display: inline"><em>eg.</em> $\sum_{\textrm{exons}\in\textrm{reads}\in\textrm{isoforms}}$GA of exons as a scoring function<br />for isoforms inference (<em>incl.</em> clustering)</small></li>
+						<li class="fragment">Heterogeneous data points: <small >LR cDNA ? SR RNA<small>seq</small> ? <small>(partial)</small> reference sequences ? <small>(partial)</small> gene models ? etc...</small></li>
+					</ul>
+				</section>
+					
 			</div>
 		</div>
 
