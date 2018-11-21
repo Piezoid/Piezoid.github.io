@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>GATB</title>
+
+		<link rel="stylesheet" href="../slides_common/css/reveal.css">
+		<link rel="stylesheet" href="../slides_common/css/theme/white.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../slides_common/css/print/pdf.css' : '../slides_common/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			.reveal .slide-number { font-size: 15px; }
+			.reveal .progress { height: px; }
+			.reveal .small { display: inline; }
+			.reveal .baseline, .reveal .baseline * { vertical-align: baseline; }
+			.reveal .noupper { text-transform: none; }
+
+			object { width: 100%; }
+			.twothird { width: 66%; }
+			.reveal pre.cmd { 
+				position: absolute; 
+				top: 2.5em; right: 0;  
+				font-size: 50%;
+				width:auto; 
+				padding: 0.25em; 
+			}
+			.reveal section img {
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>GATB</h1>
+					<h2 class="noupper">The Genome Analysis Toolbox with de-Bruijn graph</h2>
+					<p>
+						<img class="plain" style="width: 35%; vertical-align: baseline;" src="../slides_disco/figures/logo_genscale.png" />
+						<small class="baseline">Maël Kerbiriou @ BONSAI</small><br/>
+					</p>
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<h2 class="noupper">de-Bruijn Graph</h2>
+					<img class="plain stretch" src="./figures/debruijn.svg" />
+					<br /><small style="font-size: 12pt;">&nbsp;</small>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h2 class="noupper">de-Bruijn Graph</h2>
+					<img class="plain stretch" src="./figures/bloom_critical.svg" />
+					<small style="font-size: 12pt;">Space-efficient and exact de Bruijn graph representation based on a Bloom filter, Rayan Chikhi and Guillaume Rizk</small>
+				</section>
+
+				<section>
+						<h2>core & tools</h2>
+						<img class="plain stretch" src="./figures/gatb_core_components.png" />
+				</section>
+
+				<section>
+						<h2>For bio-analysts</h2>
+						<ul>
+							<li class="fragment">$k$-mer counting: DSK<span class="fragment">, Simka <small>multi-dataset for comparative metagenomics</small></span></li>
+							<li class="fragment">Assembly: Minia, BCALM2</li>
+							<li class="fragment">Correctors: Blooco, LoRDEC, LoRMA</li>
+							<li class="fragment">Variants: DiscoSnp++<small>SNPs/InDels</small>, MindTheGap<small>Insertions</small></li>
+							<li class="fragment">Compression: Leon</li>
+							<li class="fragment">Integration: Pipeline & Docker container</li>
+						</ul>	
+						<a class="fragment" href="https://gatb.inria.fr/software/">https://gatb.inria.fr/software/</a>
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<h2>For developers</h2>
+					<h3>Key data structures</h3>
+					<ul>
+						<li class="fragment">de-Bruijn & Unitig Graphs</li>
+						<li class="fragment">Compact $k$-mer representation<small>(w/ dynamic dispatch)</small></li>
+						<li class="fragment">Cascading bloom filters for $k$-mer sets, hash tables</li>
+						<li class="fragment">Minimal Perfect Hash Function (BBHash)<br />
+							<small>Bijective hash function: $ \textrm{Keys} \rightarrow \left[ 0,\, |\textrm{Keys}| \right[$</small>		
+						</li>
+					</ul>
+				</section>
+
+				<section data-transition="fade-in slide-out">
+					<h2>For developers</h2>
+					<h3>Application framework</h3>
+					<ul>
+						<li class="fragment">Command line arguments parser</li>
+						<li class="fragment">Sequence IO: Bank of FASTA files defined in a <em>file of files</em></li>
+						<li class="fragment">Multithreading: Task dispatcher</li>
+						<li class="fragment">Reporting</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="noupper">GATB-lite<small>WIP, not released</small></h2>
+					<p>Small <em>header-only</em> C++ library aiming at replacing core functionality</p>
+					<ul>
+						<li class="fragment">Compact $k$-mer representation<small>(w/ dynamic dispatch)</small></li>
+						<li class="fragment">Sequence IO, emphasis on multithreading and asynchronous IO</li>
+						<li class="fragment">Job scheduler: parallel for / async / futures (M:N threading)</li>
+						<li class="fragment">Case-study: new $k$-mer counter</li>
+						<li class="fragment">LR alignement on dBG with $01^*0$ seeds</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="noupper">Thank you for your attention</h2>
+					<h3 class="fragment noupper">Questions ?</h3>
+				</section>
+					
+			</div>
+		</div>
+
+		<script src="../slides_common/lib/js/head.min.js"></script>
+		<script src="../slides_common/js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				history: true,
+				controls: false,
+				math: {
+					mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+				dependencies: [
+					{ src: '../slides_common/plugin/math/math.js', async: true },
+					{ src: '../slides_common/plugin/notes/notes.js', async: true },
+					
+				]
+			});
+			Reveal.configure({ slideNumber: 'c/t' });
+		</script>
+	</body>
+</html>
