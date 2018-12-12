@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<!-- Created with matplotlib (http://matplotlib.org/) -->
+<svg width="864pt" height="864pt" version="1.1" viewBox="0 0 864 864" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">*{stroke-linecap:butt;stroke-linejoin:round;}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="m0 864h864v-864h-864z" fill="none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="m108 756h669.6v-652.32h-669.6z" fill="#002b36"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="m118.13 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="md58bf1264b" d="m0 0v3.5" stroke="#93a1a1" stroke-width="1.3"/>
+      </defs>
+      <use x="118.130163" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_1"><!-- −6 -->
+      <defs>
+       <path id="NotoMono-2212" d="m7.4219 31.594v7.3281h45.062v-7.3281z"/>
+       <path id="NotoMono-36" d="m47.125 71.484v-7.5625q-3.4688 1.1719-8.1094 1.1719-10.938 0-16.438-6.8906-5.4844-6.8906-5.9688-21.828h0.57812q4.6406 8.2969 14.984 8.2969 9.5312 0 14.922-5.8125 5.3906-5.7969 5.3906-15.859 0-11.141-5.8906-17.562-5.875-6.4219-15.781-6.4219-10.641 0-16.969 8.2344t-6.3281 23.266q0 41.891 31.203 41.891 5.0781 0 8.4062-0.92188zm-3.2344-48.484q0 7.0781-3.3438 10.891t-9.5469 3.8125q-6.1875 0-10.391-3.9688-4.2031-3.9531-4.2031-9.0312 0-7.4219 3.9531-12.812t10.359-5.3906q6.2031 0 9.6875 4.2969t3.4844 12.203z"/>
+      </defs>
+      <g transform="translate(110.33 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-2212"/>
+       <use x="60.009766" xlink:href="#NotoMono-36"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="m194.52 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_4">
+      <use x="194.523741" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_2"><!-- −4 -->
+      <defs>
+       <path id="NotoMono-34" d="m54.984 16.016h-10.406v-16.016h-8.5938v16.016h-33v7.7656l32.422 48h9.1719v-47.656h10.406zm-19 8.1094v17.375q0 8.5938 0.64062 21.094h-0.4375q-1.7656-4.9688-4.4062-8.7812l-20.062-29.688z"/>
+      </defs>
+      <g transform="translate(186.72 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-2212"/>
+       <use x="60.009766" xlink:href="#NotoMono-34"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="m270.92 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_6">
+      <use x="270.91732" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_3"><!-- −2 -->
+      <defs>
+       <path id="NotoMono-32" d="m52.203 0h-44.484v7.625l17.094 18.594q9.5156 10.406 12.531 15.5 3.0312 5.1094 3.0312 11.266 0 5.5156-3.0938 8.7031-3.0938 3.2031-8.375 3.2031-7.8125 0-15.531-6.6875l-4.9688 5.8125q9.375 8.3906 20.594 8.3906 9.4844 0 14.953-5.1719t5.4688-13.906q0-5.8125-2.8906-11.922-2.875-6.1094-14.203-18.312l-13.719-14.594v-0.39062h33.594z"/>
+      </defs>
+      <g transform="translate(263.12 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-2212"/>
+       <use x="60.009766" xlink:href="#NotoMono-32"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="m347.31 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_8">
+      <use x="347.310898" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_4"><!-- 0 -->
+      <defs>
+       <path id="NotoMono-30" d="m29.891-0.98438q-11.188 0-16.953 9.4531t-5.7656 27.328q0 36.719 22.719 36.719 11.328 0 17.109-9.4531t5.7812-27.266q0-36.781-22.891-36.781zm0 7.5781q7.1719 0 10.531 6.8594 3.375 6.8594 3.375 22.344 0 15.375-3.375 22.234-3.3594 6.8594-10.531 6.8594-7.0938 0-10.391-6.8125-3.2812-6.8125-3.2812-22.281 0-15.531 3.2812-22.375 3.2969-6.8281 10.391-6.8281z"/>
+      </defs>
+      <g transform="translate(343.41 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="m423.7 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_10">
+      <use x="423.704476" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_5"><!-- 2 -->
+      <g transform="translate(419.8 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-32"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="m500.1 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_12">
+      <use x="500.098055" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_6"><!-- 4 -->
+      <g transform="translate(496.2 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-34"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="m576.49 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_14">
+      <use x="576.491633" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_7"><!-- 6 -->
+      <g transform="translate(572.59 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-36"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_15">
+      <path d="m652.89 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_16">
+      <use x="652.885211" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_8"><!-- 8 -->
+      <defs>
+       <path id="NotoMono-38" d="m37.312 37.797q15.078-7.8125 15.078-19.188 0-8.8438-6.1562-14.219-6.1406-5.375-16.25-5.375-10.547 0-16.453 5.0469-5.9062 5.0625-5.9062 14.156 0 12.547 13.766 19.188-11.484 7.125-11.484 18.016 0 7.8594 5.6875 12.469 5.7031 4.625 14.391 4.625 8.9844 0 14.547-4.6406t5.5625-12.547q0-11.234-12.781-17.531zm-7.2344 3.6094q11.328 5.0312 11.328 13.578 0 4.9219-3.0781 7.5156t-8.4375 2.5938q-5.1875 0-8.2344-2.5938t-3.0469-7.5156q0-4.3906 2.4062-7.4531 2.4219-3.0469 9.0625-6.125zm-1.3594-7.4219q-12.406-5.9062-12.406-15.875 0-11.719 13.469-11.719 6.6406 0 10.281 3.2031t3.6406 8.9062q0 4.4062-3.0781 7.7969t-10.453 7z"/>
+      </defs>
+      <g transform="translate(648.98 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-38"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_17">
+      <path d="m729.28 756v-652.32" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_18">
+      <use x="729.27879" y="756" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#md58bf1264b"/>
+     </g>
+     <g id="text_9"><!-- 10 -->
+      <defs>
+       <path id="NotoMono-31" d="m37.016 0h-8.5938v44.578q0 5.9531 0.39062 17.625-1.9062-2.0938-5.9062-5.5156l-7.1875-5.9062-4.7344 6 18.703 14.609h7.3281z"/>
+      </defs>
+      <g transform="translate(721.48 778.48) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-31"/>
+       <use x="60.009766" xlink:href="#NotoMono-30"/>
+      </g>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_19">
+      <path d="m108 683.92h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_20">
+      <defs>
+       <path id="mb7ce5005f2" d="m0 0h-3.5" stroke="#93a1a1" stroke-width="1.3"/>
+      </defs>
+      <use x="108" y="683.924019" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_10"><!-- −6 -->
+      <g transform="translate(79.796 688.86) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-2212"/>
+       <use x="60.009766" xlink:href="#NotoMono-36"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_21">
+      <path d="m108 602.26h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_22">
+      <use x="108" y="602.259529" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_11"><!-- −4 -->
+      <g transform="translate(79.796 607.2) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-2212"/>
+       <use x="60.009766" xlink:href="#NotoMono-34"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_23">
+      <path d="m108 520.6h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_24">
+      <use x="108" y="520.59504" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_12"><!-- −2 -->
+      <g transform="translate(79.796 525.53) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-2212"/>
+       <use x="60.009766" xlink:href="#NotoMono-32"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_25">
+      <path d="m108 438.93h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_26">
+      <use x="108" y="438.930551" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_13"><!-- 0 -->
+      <g transform="translate(87.598 443.87) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-30"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_27">
+      <path d="m108 357.27h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_28">
+      <use x="108" y="357.266062" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_14"><!-- 2 -->
+      <g transform="translate(87.598 362.21) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-32"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_29">
+      <path d="m108 275.6h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_30">
+      <use x="108" y="275.601573" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_15"><!-- 4 -->
+      <g transform="translate(87.598 280.54) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-34"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_31">
+      <path d="m108 193.94h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_32">
+      <use x="108" y="193.937084" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_16"><!-- 6 -->
+      <g transform="translate(87.598 198.88) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-36"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_33">
+      <path d="m108 112.27h669.6" clip-path="url(#pa2a8efe14c)" fill="none" stroke="#073642" stroke-linecap="square" stroke-width="1.3"/>
+     </g>
+     <g id="line2d_34">
+      <use x="108" y="112.272595" fill="#93a1a1" stroke="#93a1a1" stroke-width="1.3" xlink:href="#mb7ce5005f2"/>
+     </g>
+     <g id="text_17"><!-- 8 -->
+      <g transform="translate(87.598 117.21) scale(.13 -.13)" fill="#93a1a1">
+       <use xlink:href="#NotoMono-38"/>
+      </g>
+     </g>
+    </g>
+   </g>
+   <g id="PathCollection_1">
+    <path d="m391.47 140.84c1.8753 0 3.674-0.74505 5-2.0711 1.326-1.326 2.0711-3.1247 2.0711-5 0-1.8753-0.74505-3.674-2.0711-5-1.326-1.326-3.1247-2.0711-5-2.0711s-3.674 0.74505-5 2.0711c-1.326 1.326-2.0711 3.1247-2.0711 5 0 1.8753 0.74505 3.674 2.0711 5 1.326 1.326 3.1247 2.0711 5 2.0711z" clip-path="url(#pa2a8efe14c)" fill="#f00" fill-opacity=".7"/>
+   </g>
+   <g id="PathCollection_2">
+    <path d="m747.16 315.6c0.93763 0 1.837-0.37253 2.5-1.0355s1.0355-1.5624 1.0355-2.5c0-0.93763-0.37253-1.837-1.0355-2.5s-1.5624-1.0355-2.5-1.0355c-0.93764 0-1.837 0.37253-2.5 1.0355s-1.0355 1.5624-1.0355 2.5c0 0.93764 0.37253 1.837 1.0355 2.5s1.5624 1.0355 2.5 1.0355z" clip-path="url(#pa2a8efe14c)" fill="#f00" fill-opacity=".7"/>
+   </g>
+   <g id="PathCollection_3">
+    <defs>
+     <path id="md4ebfde5ba" d="m-3.5355 7.0711 3.5355-3.5355 3.5355 3.5355 3.5355-3.5355-3.5355-3.5355 3.5355-3.5355-3.5355-3.5355-3.5355 3.5355-3.5355-3.5355-3.5355 3.5355 3.5355 3.5355-3.5355 3.5355z" stroke="#000" stroke-opacity=".7" stroke-width="2"/>
+    </defs>
+    <g clip-path="url(#pa2a8efe14c)">
+     <use x="209.293404" y="568.92528" fill="#839496" fill-opacity=".7" stroke="#000000" stroke-opacity=".7" stroke-width="2" xlink:href="#md4ebfde5ba"/>
+    </g>
+   </g>
+   <g id="PathCollection_4">
+    <defs>
+     <path id="mcdb88b70f2" d="m-2.357 7.0711h4.714v-4.714h4.714v-4.714h-4.714v-4.714h-4.714v4.714h-4.714v4.714h4.714z" stroke="#000080" stroke-opacity=".7" stroke-width="2"/>
+    </defs>
+    <g clip-path="url(#pa2a8efe14c)">
+     <use x="154.269998" y="587.001498" fill="#839496" fill-opacity=".7" stroke="#000080" stroke-opacity=".7" stroke-width="2" xlink:href="#mcdb88b70f2"/>
+    </g>
+   </g>
+   <g id="PathCollection_5">
+    <defs>
+     <path id="m5a1eda2771" d="m-2.357 7.0711h4.714v-4.714h4.714v-4.714h-4.714v-4.714h-4.714v4.714h-4.714v4.714h4.714z" stroke="#008000" stroke-opacity=".7" stroke-width="2"/>
+    </defs>
+    <g clip-path="url(#pa2a8efe14c)">
+     <use x="568.676765" y="720.87735" fill="#839496" fill-opacity=".7" stroke="#008000" stroke-opacity=".7" stroke-width="2" xlink:href="#m5a1eda2771"/>
+    </g>
+   </g>
+   <g id="PathCollection_6">
+    <path d="m138.33 587.86h14.142v-14.142h-14.142z" clip-path="url(#pa2a8efe14c)" fill="#839496" fill-opacity=".7"/>
+   </g>
+   <g id="PathCollection_7">
+    <path d="m217.24 557.42c1.8753 0 3.674-0.74505 5-2.0711 1.326-1.326 2.0711-3.1247 2.0711-5 0-1.8753-0.74505-3.674-2.0711-5-1.326-1.326-3.1247-2.0711-5-2.0711s-3.674 0.74505-5 2.0711c-1.326 1.326-2.0711 3.1247-2.0711 5 0 1.8753 0.74505 3.674 2.0711 5 1.326 1.326 3.1247 2.0711 5 2.0711z" clip-path="url(#pa2a8efe14c)" fill="#839496" fill-opacity=".7"/>
+   </g>
+   <g id="PathCollection_8">
+    <path d="m274.93 609.68c1.8753 0 3.674-0.74505 5-2.0711 1.326-1.326 2.0711-3.1247 2.0711-5s-0.74505-3.674-2.0711-5c-1.326-1.326-3.1247-2.0711-5-2.0711-1.8753 0-3.674 0.74505-5 2.0711-1.326 1.326-2.0711 3.1247-2.0711 5s0.74505 3.674 2.0711 5c1.326 1.326 3.1247 2.0711 5 2.0711z" clip-path="url(#pa2a8efe14c)" fill="#3636b2" fill-opacity=".7"/>
+   </g>
+   <g id="PathCollection_9">
+    <path d="m521.26 653.15c0.93764 0 1.837-0.37253 2.5-1.0355 0.66301-0.66301 1.0355-1.5624 1.0355-2.5 0-0.93763-0.37253-1.837-1.0355-2.5-0.66301-0.66301-1.5624-1.0355-2.5-1.0355-0.93763 0-1.837 0.37253-2.5 1.0355-0.66301 0.66301-1.0355 1.5624-1.0355 2.5 0 0.93764 0.37253 1.837 1.0355 2.5 0.66301 0.66301 1.5624 1.0355 2.5 1.0355z" clip-path="url(#pa2a8efe14c)" fill="#839496" fill-opacity=".7"/>
+   </g>
+   <g id="PathCollection_10">
+    <path d="m486.32 620.02c0.93764 0 1.837-0.37253 2.5-1.0355 0.66301-0.66301 1.0355-1.5624 1.0355-2.5 0-0.93763-0.37253-1.837-1.0355-2.5-0.66301-0.66301-1.5624-1.0355-2.5-1.0355-0.93763 0-1.837 0.37253-2.5 1.0355-0.66301 0.66301-1.0355 1.5624-1.0355 2.5 0 0.93764 0.37253 1.837 1.0355 2.5 0.66301 0.66301 1.5624 1.0355 2.5 1.0355z" clip-path="url(#pa2a8efe14c)" fill="#3636b2" fill-opacity=".7"/>
+   </g>
+   <g id="patch_3">
+    <path d="m108 756v-652.32" fill="none" stroke="#839496" stroke-linecap="square"/>
+   </g>
+   <g id="patch_4">
+    <path d="m777.6 756v-652.32" fill="none" stroke="#839496" stroke-linecap="square"/>
+   </g>
+   <g id="patch_5">
+    <path d="m108 756h669.6" fill="none" stroke="#839496" stroke-linecap="square"/>
+   </g>
+   <g id="patch_6">
+    <path d="m108 103.68h669.6" fill="none" stroke="#839496" stroke-linecap="square"/>
+   </g>
+   <g id="legend_1">
+    <g id="patch_7">
+     <path d="m617.67 309.1h150.83q2.6 0 2.6-2.6v-193.72q0-2.6-2.6-2.6h-150.83q-2.6 0-2.6 2.6v193.72q0 2.6 2.6 2.6z" fill="#002b36" opacity=".8" stroke="#ccc" stroke-width=".39"/>
+    </g>
+    <g id="PathCollection_11">
+     <path d="m633.27 128.92c1.8753 0 3.674-0.74505 5-2.0711 1.326-1.326 2.0711-3.1247 2.0711-5s-0.74505-3.674-2.0711-5c-1.326-1.326-3.1247-2.0711-5-2.0711-1.8753 0-3.674 0.74505-5 2.0711-1.326 1.326-2.0711 3.1247-2.0711 5s0.74505 3.674 2.0711 5c1.326 1.326 3.1247 2.0711 5 2.0711z" fill="#f00" fill-opacity=".7"/>
+    </g>
+    <g id="text_18"><!-- DIO-RS ATI - - - -->
+     <defs>
+      <path id="NotoMono-44" d="m6.5938 0v71.391h16.703q15.469 0 24.078-9.2344 8.625-9.2188 8.625-25.781 0-17.625-8.9375-27-8.9219-9.375-25.766-9.375zm9.125 63.625v-55.812h4.6875q25.984 0 25.984 28.266 0 27.547-24.078 27.547z"/>
+      <path id="NotoMono-49" d="m48.875 0h-37.891v6l14.406 0.98438v57.422l-14.406 0.96875v6.0156h37.891v-6.0156l-14.359-0.96875v-57.422l14.359-0.98438z"/>
+      <path id="NotoMono-4f" d="m30.078-0.98438q-25.969 0-25.969 36.875 0 36.625 26.062 36.625 12.5 0 19.156-9.5469 6.6719-9.5469 6.6719-27.172t-6.7344-27.203-19.188-9.5781zm0 7.9688q8.4531 0 12.375 7.0781 3.9375 7.0781 3.9375 21.734 0 14.797-3.9844 21.75t-12.234 6.9531q-16.453 0-16.453-28.703 0-28.812 16.359-28.812z"/>
+      <path id="NotoMono-2d" d="m13.922 22.703v8.2031h32.172v-8.2031z"/>
+      <path id="NotoMono-52" d="m18.219 29.5v-29.5h-9.1406v71.391h17.438q25.391 0 25.391-20.266 0-14.016-14.109-19.141l19.375-31.984h-10.688l-17.094 29.5zm0 7.7031h8q8.3594 0 12.312 3.2188 3.9531 3.2344 3.9531 10.266 0 6.875-3.9062 9.9062t-12.594 3.0312h-7.7656z"/>
+      <path id="NotoMono-53" d="m6.8906 2.3906v8.6875q10.297-4.1875 20.203-4.1875 17.094 0 17.094 11.719 0 5.0781-3.4375 7.8125t-13.938 6.4844q-10.156 3.5625-14.578 8.5156-4.4219 4.9688-4.4219 12.875 0 8.5 6.2656 13.297 6.2812 4.8125 17.219 4.8125 11.188 0 20.312-3.7969l-3.125-8.0156q-9.4219 3.8125-17.578 3.8125-14.297 0-14.297-10.203 0-4.9844 3.1875-8.0156 3.2031-3.0156 13.219-6.4844 12-4.2969 16.031-8.875 4.0312-4.5625 4.0312-11.734 0-9.375-6.7656-14.734-6.7656-5.3438-19.219-5.3438-12.938 0-20.203 3.375z"/>
+      <path id="NotoMono-41" d="m49.031 0-7.0312 22.125h-23.984l-7.125-22.125h-9.2812l23.594 71.688h9.5156l23.688-71.688zm-9.625 30.172-6.5 20.703q-1.9062 6.0625-3.0156 11.047-0.98438-4.8438-2.25-8.9375l-7.0312-22.812z"/>
+      <path id="NotoMono-54" d="m34.516 0h-9.125v63.375h-20.406v8.0156h49.906v-8.0156h-20.375z"/>
+     </defs>
+     <g transform="translate(656.67 125.26) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-44"/>
+      <use x="60.009766" xlink:href="#NotoMono-49"/>
+      <use x="120.019531" xlink:href="#NotoMono-4f"/>
+      <use x="180.029297" xlink:href="#NotoMono-2d"/>
+      <use x="240.039062" xlink:href="#NotoMono-52"/>
+      <use x="300.048828" xlink:href="#NotoMono-53"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-41"/>
+      <use x="480.078125" xlink:href="#NotoMono-54"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_12">
+     <path d="m633.27 144.88c0.93763 0 1.837-0.37253 2.5-1.0355 0.66301-0.66301 1.0355-1.5624 1.0355-2.5s-0.37253-1.837-1.0355-2.5c-0.66301-0.66301-1.5624-1.0355-2.5-1.0355-0.93764 0-1.837 0.37253-2.5 1.0355-0.66301 0.66301-1.0355 1.5624-1.0355 2.5s0.37253 1.837 1.0355 2.5c0.66301 0.66301 1.5624 1.0355 2.5 1.0355z" fill="#f00" fill-opacity=".7"/>
+    </g>
+    <g id="text_19"><!-- DIO-RS RRI - - - -->
+     <g transform="translate(656.67 144.76) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-44"/>
+      <use x="60.009766" xlink:href="#NotoMono-49"/>
+      <use x="120.019531" xlink:href="#NotoMono-4f"/>
+      <use x="180.029297" xlink:href="#NotoMono-2d"/>
+      <use x="240.039062" xlink:href="#NotoMono-52"/>
+      <use x="300.048828" xlink:href="#NotoMono-53"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-52"/>
+      <use x="480.078125" xlink:href="#NotoMono-52"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_13">
+     <use x="633.271563" y="160.849531" fill="#839496" fill-opacity=".7" stroke="#000000" stroke-opacity=".7" stroke-width="2" xlink:href="#md4ebfde5ba"/>
+    </g>
+    <g id="text_20"><!-- MMF    ATI - - - -->
+     <defs>
+      <path id="NotoMono-4d" d="m25.984 0-13.578 62.5h-0.39062q0.875-12.984 0.875-19.828v-42.672h-7.375v71.391h12.062l12.109-58.203h0.29688l12.203 58.203h12.312v-71.391h-7.4844v43.312q0 4.9844 0.6875 19.094h-0.39062l-13.812-62.406z"/>
+      <path id="NotoMono-46" d="m21 0h-9.0781v71.391h41.062v-8.0156h-31.984v-25.188h30.125v-8.0156h-30.125z"/>
+     </defs>
+     <g transform="translate(656.67 164.26) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-4d"/>
+      <use x="60.009766" xlink:href="#NotoMono-4d"/>
+      <use x="120.019531" xlink:href="#NotoMono-46"/>
+      <use x="180.029297" xlink:href="#NotoMono-20"/>
+      <use x="240.039062" xlink:href="#NotoMono-20"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-41"/>
+      <use x="480.078125" xlink:href="#NotoMono-54"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_14">
+     <use x="633.271563" y="180.351562" fill="#839496" fill-opacity=".7" stroke="#000080" stroke-opacity=".7" stroke-width="2" xlink:href="#mcdb88b70f2"/>
+    </g>
+    <g id="text_21"><!-- MMF-R  RRI - - - -->
+     <g transform="translate(656.67 183.76) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-4d"/>
+      <use x="60.009766" xlink:href="#NotoMono-4d"/>
+      <use x="120.019531" xlink:href="#NotoMono-46"/>
+      <use x="180.029297" xlink:href="#NotoMono-2d"/>
+      <use x="240.039062" xlink:href="#NotoMono-52"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-52"/>
+      <use x="480.078125" xlink:href="#NotoMono-52"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_15">
+     <use x="633.271563" y="199.853594" fill="#839496" fill-opacity=".7" stroke="#008000" stroke-opacity=".7" stroke-width="2" xlink:href="#m5a1eda2771"/>
+    </g>
+    <g id="text_22"><!-- MMF-T  RRI - - - -->
+     <g transform="translate(656.67 203.27) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-4d"/>
+      <use x="60.009766" xlink:href="#NotoMono-4d"/>
+      <use x="120.019531" xlink:href="#NotoMono-46"/>
+      <use x="180.029297" xlink:href="#NotoMono-2d"/>
+      <use x="240.039062" xlink:href="#NotoMono-54"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-52"/>
+      <use x="480.078125" xlink:href="#NotoMono-52"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_16">
+     <path d="m626.2 226.43h14.142v-14.142h-14.142z" fill="#839496" fill-opacity=".7"/>
+    </g>
+    <g id="text_23"><!-- R      RRI - - - -->
+     <g transform="translate(656.67 222.77) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-52"/>
+      <use x="60.009766" xlink:href="#NotoMono-20"/>
+      <use x="120.019531" xlink:href="#NotoMono-20"/>
+      <use x="180.029297" xlink:href="#NotoMono-20"/>
+      <use x="240.039062" xlink:href="#NotoMono-20"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-52"/>
+      <use x="480.078125" xlink:href="#NotoMono-52"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_17">
+     <path d="m633.27 245.93c1.8753 0 3.674-0.74505 5-2.0711 1.326-1.326 2.0711-3.1247 2.0711-5s-0.74505-3.674-2.0711-5c-1.326-1.326-3.1247-2.0711-5-2.0711-1.8753 0-3.674 0.74505-5 2.0711-1.326 1.326-2.0711 3.1247-2.0711 5s0.74505 3.674 2.0711 5c1.326 1.326 3.1247 2.0711 5 2.0711z" fill="#839496" fill-opacity=".7"/>
+    </g>
+    <g id="text_24"><!-- RS     ATI - - - -->
+     <g transform="translate(656.67 242.27) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-52"/>
+      <use x="60.009766" xlink:href="#NotoMono-53"/>
+      <use x="120.019531" xlink:href="#NotoMono-20"/>
+      <use x="180.029297" xlink:href="#NotoMono-20"/>
+      <use x="240.039062" xlink:href="#NotoMono-20"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-41"/>
+      <use x="480.078125" xlink:href="#NotoMono-54"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_18">
+     <path d="m633.27 265.43c1.8753 0 3.674-0.74505 5-2.0711 1.326-1.326 2.0711-3.1247 2.0711-5 0-1.8753-0.74505-3.674-2.0711-5-1.326-1.326-3.1247-2.0711-5-2.0711-1.8753 0-3.674 0.74505-5 2.0711-1.326 1.326-2.0711 3.1247-2.0711 5 0 1.8753 0.74505 3.674 2.0711 5 1.326 1.326 3.1247 2.0711 5 2.0711z" fill="#3636b2" fill-opacity=".7"/>
+    </g>
+    <g id="text_25"><!-- RS     ATI S- - -->
+     <g transform="translate(656.67 261.77) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-52"/>
+      <use x="60.009766" xlink:href="#NotoMono-53"/>
+      <use x="120.019531" xlink:href="#NotoMono-20"/>
+      <use x="180.029297" xlink:href="#NotoMono-20"/>
+      <use x="240.039062" xlink:href="#NotoMono-20"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-41"/>
+      <use x="480.078125" xlink:href="#NotoMono-54"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-53"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_19">
+     <path d="m633.27 281.4c0.93763 0 1.837-0.37253 2.5-1.0355 0.66301-0.66301 1.0355-1.5624 1.0355-2.5 0-0.93764-0.37253-1.837-1.0355-2.5-0.66301-0.66301-1.5624-1.0355-2.5-1.0355-0.93764 0-1.837 0.37253-2.5 1.0355-0.66301 0.66301-1.0355 1.5624-1.0355 2.5 0 0.93763 0.37253 1.837 1.0355 2.5 0.66301 0.66301 1.5624 1.0355 2.5 1.0355z" fill="#839496" fill-opacity=".7"/>
+    </g>
+    <g id="text_26"><!-- RS     RRI - - - -->
+     <g transform="translate(656.67 281.27) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-52"/>
+      <use x="60.009766" xlink:href="#NotoMono-53"/>
+      <use x="120.019531" xlink:href="#NotoMono-20"/>
+      <use x="180.029297" xlink:href="#NotoMono-20"/>
+      <use x="240.039062" xlink:href="#NotoMono-20"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-52"/>
+      <use x="480.078125" xlink:href="#NotoMono-52"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-2d"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+    <g id="PathCollection_20">
+     <path d="m633.27 300.9c0.93763 0 1.837-0.37253 2.5-1.0355 0.66301-0.66301 1.0355-1.5624 1.0355-2.5s-0.37253-1.837-1.0355-2.5c-0.66301-0.66301-1.5624-1.0355-2.5-1.0355-0.93764 0-1.837 0.37253-2.5 1.0355-0.66301 0.66301-1.0355 1.5624-1.0355 2.5s0.37253 1.837 1.0355 2.5c0.66301 0.66301 1.5624 1.0355 2.5 1.0355z" fill="#3636b2" fill-opacity=".7"/>
+    </g>
+    <g id="text_27"><!-- RS     RRI S- - -->
+     <g transform="translate(656.67 300.78) scale(.13 -.13)" fill="#93a1a1">
+      <use xlink:href="#NotoMono-52"/>
+      <use x="60.009766" xlink:href="#NotoMono-53"/>
+      <use x="120.019531" xlink:href="#NotoMono-20"/>
+      <use x="180.029297" xlink:href="#NotoMono-20"/>
+      <use x="240.039062" xlink:href="#NotoMono-20"/>
+      <use x="300.048828" xlink:href="#NotoMono-20"/>
+      <use x="360.058594" xlink:href="#NotoMono-20"/>
+      <use x="420.068359" xlink:href="#NotoMono-52"/>
+      <use x="480.078125" xlink:href="#NotoMono-52"/>
+      <use x="540.087891" xlink:href="#NotoMono-49"/>
+      <use x="600.097656" xlink:href="#NotoMono-20"/>
+      <use x="660.107422" xlink:href="#NotoMono-53"/>
+      <use x="720.117188" xlink:href="#NotoMono-2d"/>
+      <use x="780.126953" xlink:href="#NotoMono-2d"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa2a8efe14c">
+   <rect x="108" y="103.68" width="669.6" height="652.32"/>
+  </clipPath>
+ </defs>
+</svg>
