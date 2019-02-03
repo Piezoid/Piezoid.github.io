@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>modification minimap2</title>
+		<title>Parallel gzip decompression</title>
 
 		<link rel="stylesheet" href="../slides_common/css/reveal.css">
 		<link rel="stylesheet" href="../slides_common/css/theme/white.css">
@@ -34,6 +34,11 @@
 			}
 			.reveal section img {
 				border: none;
+				box-shadow: none;
+			}
+
+			.reveal .xsmall {
+				font-size: 11pt;
 			}
 		</style>
 	</head>
@@ -44,95 +49,107 @@
 					<h2>Parallel decompression of</h2>
 					<h1>gzip files</h1>
 					<p>
-						<small>Maël Kerbiriou @ BONSAI<br/>Lille, France</small>
+						<p>Maël Kerbiriou <small>@ BONSAI<br/> Lille, France</small></p>
+						<p>Rayan Chikhi <small>@ CNRS & Institut Pasteur</small></p>
 					</p>
 				</section>
 
 				<section>
 						<h2>GZIP</h2>
 						<h3>History at a glance</h3>
-						<p><pre>gzip</pre> is an utility and file format for lossless compression using the LZ77 and Huffman coding</p>
+						<p><code>gzip</code> is an utility and file format for lossless compression using the LZ77 and Huffman coding</p>
 						<ul>
-							<li>LZ77 <small>(Abraham Lempel and Jacob Ziv, 1977)</small> allows is used repetitions in the stream</li>
+							<li>LZ77 <small>(Abraham Lempel and Jacob Ziv, 1977)</small> encode repetitions in the stream</li>
 							<li>Huffman coding (1952) assign a code of optimal length for each symbol</li>
-							<li>the DEFLATE algorithm, first used in <code>PKZIP</code> in 1989, combines the two</li>
-							<li>gzip 0.1, released on 1992, is the GNU implementation of DEFLATEwith it's own file container format</li>
+							<li>DEFLATE format: first used in <code>PKZIP</code> (1989), combines the above technology</li>
+							<li>gzip (v0.1 in 1992) : GNU implementation of DEFLATE with it's own file container format</li>
 						</ul>
+				</section>
+
+				<section>
+					<h2>GZIP</h2>
+					<h3>format</h3>
+					<img class="stretch" src="figures/gzip_format.svg" />
 				</section>
 
 				<section>
 					<h3>gzip usage in bioinformatics</h3>
 					<ul>
 						<li>Text file format are frequent in  bioinformatics</li>
-						<li>gzip is a natural choice for generic compression o f text file:
+						<li>gzip is a natural choice for generic compression of text file:
 							<ul>
 								<li>ASCII only: immediate 7/8bits space reduction</li>
 								<li>FASTA: 4 symbols, short repetitions in DNA</li>
 								<li>VCF,BED,...: digits/sperators, repeated fields</li>
 							</ul>
 						</li>
-						<li>gzip is ubiquitous and fast <small>(Especially at compression level <code>-0</code>)</small></li>
-						<li>However, it is not best in class in either compression/decompression nor compression ratio<br/>
-						<small>See <i>eg.</i> brotli or Zstd <a href="https://quixdb.github.io/squash-benchmark">https://quixdb.github.io/squash-benchmark</a></small></li>
+						<li>It is not best in class in either compression/decompression nor compression ratio<br/>
+							<small>See <i>eg.</i> brotli or Zstd <a href="https://quixdb.github.io/squash-benchmark">https://quixdb.github.io/squash-benchmark</a></small></li>
+						<li>However, gzip is ubiquitous and fast <small>(In particular, <code>gzip -1</code> is 7x faster than the default)</small>
+						<br />Default compression format in <code>bcl2fastq</code></li>
+						
+						<li>⇒<code>.fq.gz</code> format is here to stay, at least as an interchange format.</li>
 					</ul>	
 				</section>
 
-
 				<section>
-					<h3>gzip usage in bio-informatics</h3>
+					<h2>GZIP</h2>
+					<p>When is decompression a bottleneck?</p>
 					<ul>
-						<li>Sequencing throughput is increassing at a exponential rate</li>
-						<li>Storage of raw reads data, while being a hassle, is a necessity for reproductible science and enabling re-analysis.</li>
-						<li>Most labs use the Illumina tool <code>bcl2fastq2</code> which compress to gzip</li>
-						<li>Again, even if better specialized format for SR exists, gzip is ubiquitous and "good enough"<br/>
-						⇒<code>.fq.gz</code> format is here to stay, at least as an interchange format.</li>
-
-					</ul>
-				</section>
-
-				<section>
-						<h2>Parallelism</h2>
-						<h3>Why is it desirable ?</h3>
-						<ul>
-							<li>Moore's law is dead, clock frequencies and IPC are stagnating</li>
-							<li>The way-out is multi-core parallelism</li>
-							<li>>4 cores CPUs are common in servers and developping in the consumer market.</li>
-						</ul>
-				</section>
-
-				<section>
-					<h2>Parallel decompression</h2>
-					<h3>Why is it desirable ?</h3>
-					<ul>
-						<li>Some routine data processing <small>(read/kmer counting, quality averaging)</small> are not intrinsicly CPU-heavy tasks</li>
-						<li>Most of CPU time is spent on decompressing gzip files</li>
-						<li>If not, the compute task could be parallelized, and decompression would become the bottleneck again</li>
+						<li>Some routine data processing are not intrinsically CPU-heavy tasks</li>
+						<li>Most of CPU time is spent on decompressing input gzip files</li>
+						<li>If CPU intensive, the compute task is generally parallelizable<br/>⇒ decompression will again be the bottleneck</li>
 						<li>IO bottlenecks are not a problem with the current generation of NAS and NVMe drives</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>The problems with gzip</h2>
+					<h2>Gzip: a sequential bottleneck</h2>
+					<p>Moore's law is dead, clock frequencies and IPC are stagnating ⇒ need multi-core parallelism</p>
+					<img class="stretch" src="figures/AmdahlsLaw.svg" alt="AmdahlsLaw" />
+					<br/><small class="xsmall">credits: Wikimedia</small>
+					<p class="fragment"><b>⇒ gzip decompression can or will be a sequential bottleneck</b></p>
+				</section>
+
+				<section>
+					<h2>Gzip random access</h2>
+					<p>Needed for parallelization, allows to dispatch chunks to threads.</p>
+					<p>But gzip format does not make things easy for us.</p>
+				</section>
+
+				<section>
+					<h2>Gzip random access</h2>
 					<h3>LZ77 sliding window</h3>
+					<img src="figures/lz77.svg" alt="" class="stretch"/> 
 					<ul>
-						<li>LZ77 encode the stream with two kind of symbols<ul>
+						<!-- <li>LZ77 encode the stream with two kind of symbols<ul>
 							<li>Literals: a character from the original stream</li>
 							<li>Matches: a substream of the past stream</li>
 						</ul></li>
-						<li>Matches can reference the past 32KB of decoded data: this is the sliding window</li>
-						<li>The window is never reset: through transitivity, the end of the stream might reference some characters at the begining</li>
-						<li><b>We cannot seek in the stream if we don't know the previous 32KB</b></li>
+						<li>Matches can reference the past 32KB of decoded data: this is called a 'sliding window'</li>-->
+						<li>In a gzip stream the window is never reset: through transitivity, the end of the stream might reference some characters at the begining</li> 
+						
+						<li><b>We cannot seek in the stream if we don't know the previous 32KiB</b></li>
 					</ul>
 				</section>
 
-
 				<section>
-					<h2>The problems with gzip</h2>
+					<h2>Gzip random access</h2>
 					<h3>Adaptative Huffman code</h3>
 					<ul>
 						<li>The deflate stream is segmented into blocks, each with a different huffman tree</li>
-						<li>The block delimitation is signaled with in band coding: no length field in block headers</li>
+						<li>No block length field in block headers</li>
 						<li>A prefix code streams is not byte aligned, nor are the block limits</li>
+					</ul>
+					<img class="stretch" src="figures/zlib_format.jpg" />
+				</section>
+
+				<section>
+					<h2>Gzip random access</h2>
+					<p>We propose: </p>
+					<ul>
+						<li>A way to guess block position, in order to deserialize the current huffman tree</li>
+						<li>Two methods to deal with the unknown 32KiB context</li>
 					</ul>
 				</section>
 
@@ -141,42 +158,61 @@
 						<p>Brute force approach: try every bit position until one yield an acceptable result</p>
 						<p>Rewind and try next bit position in case of: <p>
 						<ul>
-							<li>Block header or Huffman tree invariant check fails</li>
-							<li>Unknown Huffman symbol</li>
-							<li>Non ASCII litteral</li>
+							<li>Invalid block headers or Huffman trees</li>
+							<li>Unknown Huffman symbols</li>
+							<li>Non ASCII litterals</li>
 						</ul>
+						<img class="stretch" src="figures/gzip_format.svg" />
 				</section>
+
+
+				<section data-transition="slide-in fade-out">
+					<h3>Decompressing with an unknown context</h3>
+					<p>Fill the windows with dummy character and advance the de coding untill none remains.</p>
+					<img class="stretch" src="figures/figure_blocks.svg">
+				</section>
+				
+				<section data-transition="slide-out fade-in">
+						<h3>Decompressing with an unknown context</h3>
+						<p>Fill the windows with dummy character and advance the de coding untill none remains.</p>
+						<img class="stretch" src="figures/figure_blocks_colored.svg">
+					</section>
 
 				<section>
 						<h3>Decompressing with an unknown context</h3>
-						<p>First approach: fill the windows with dummy character and advance the de coding untill none remains.</p>
-						<ul>
-							<ul>Geometric decay of the number of unknown symbols</ul>
-							<ul>with a treshold effect: few frequently used symbols (such a newlines) remains until the end of the stream</ul>
-							<ul>Perspective: use FASTQ specifics heuristics to extract sequence even in the presence of unknown symbols (<code>fqgz</code>)</code></ul>
-						</ul>
+						<img class="stretch" src="figures/porcelain-rhodo.png" />
+						<p class="fragment">Perspective: use FASTQ specifics heuristics to extract sequence even in the presence of unknown symbols</code></p>
 				</section>
 
-				<section>
+				<section data-transition="slide-in fade-out">
 						<h3>Decompressing with an unknown context</h3>
-						<p>Second approach: fill the windows with unique symbols, do a second pass substitiuting those symbols with the context once it is known (<code>pugz</code>)</p>
+						<p>Second approach: fill the windows with <b>unique symbols</b><span style="visibility:hidden;">, then do a second pass substituting those symbols with the context once it is known (<code>pugz</code>)</span></p>
+						<img class="stretch" src="figures/pugz0.svg">
 				</section>
 
-				<section>
-						<h3>Optimizations &#38; Implementation details</h3>
-						<ul>
-							<li>The two pass method implies to conserve the whole chunks into memory</li>
-							<li>With geometric decay, the 32K symbols quicly decay to 127 symbols allowing to store them as char along with ASCII litterals</li>
-						</ul>
+				<section data-transition="fade-in slide-out">
+					<h3>Decompressing with an unknown context</h3>
+					<p>Second approach: fill the windows with <b>unique symbols</b>, then do a second pass substituting those symbols with the context once it is known (<code>pugz</code>)</span></p>
+					<img class="stretch" src="figures/pugz1.svg">
 				</section>
 
 				<section>
 						<h3>Performance</h3>
+						<img class="stretch" src="figures/perf.svg">
 				</section>
 
 
 				<section>
 						<h3>Conclusion</h3>
+						<ul>
+							<li>It's possible to get speedups by parallelizing gzip ! <br/>~5x faster than libdeflate with 12 threads. <small>There is room for improvement.</small></li>
+							<li>Limited to ASCII files, but can be extend for binary.</li>
+				
+							<li>Some alternatives exist like <em>blocked</em> gzip. <code>bcl2fastq</code> uses it.
+								<br/>⇒ 50% file in the Short Read Archive are in bgzf.</li>
+						</ul>
+						<h3 class="fragment">Thank you for your attention !</h3>
+						<h4 class="fragment">Questions ?</h3>
 				</section>
 
 
@@ -202,7 +238,12 @@
 					{ src: '../slides_common/plugin/math/math.js', async: true },
 					{ src: '../slides_common/plugin/notes/notes.js', async: true },
 					
-				]
+				],
+				width: 1280,
+				height: 1024,
+				margin: 0.01,
+				minScale: 0.002,
+				maxScale: 1.5
 			});
 			Reveal.configure({ slideNumber: 'c/t' });
 		</script>
