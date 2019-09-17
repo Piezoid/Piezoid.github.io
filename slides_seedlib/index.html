@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Seedlib's data structures</title>
+
+	<link rel="stylesheet" href="../slides_common/css/reveal.css">
+	<link rel="stylesheet" href="../slides_common/css/theme/white.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? '../slides_common/css/print/pdf.css' : '../slides_common/css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+	<style>
+		.reveal .slide-number {
+			font-size: 15px;
+		}
+
+		.reveal .progress {
+			height: px;
+		}
+
+		.reveal .noupper {
+			text-transform: none;
+		}
+
+		object {
+			width: 100%;
+		}
+
+		.onethird {
+			width: 33%;
+		}
+
+		.twothird {
+			width: 66%;
+		}
+
+		.reveal pre.cmd {
+			position: absolute;
+			top: 2.5em;
+			right: 0;
+			font-size: 50%;
+			width: auto;
+			padding: 0.25em;
+		}
+
+		.reveal section img {
+			border: none;
+		}
+
+		.reveal .footnote {
+			font-size: 0.5em;
+			text-align: left;
+		}
+
+		.reveal small {
+			vertical-align: baseline;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Seedlib</h2>
+					<h3>Data structures</h3>
+					<p>
+						<small>Maël Kerbiriou @ BONSAI</small>
+						<small>Project coordinated by Helene Touzet, Antoine Limasset and Rayan Chikhi</small>
+					</p>
+			</section>
+
+			<section>
+				<h5>Problem: Mapping with</h5>
+				<h3>Approximate String Matching</h3>
+				<ul>
+					<li class="fragment">(Self)-Mapping nanopore reads</li>
+					<li class="fragment">Large expression ranges (RNA)</li>
+				</ul>
+				<p class="fragment">⇒ Need better sensibility, while avoiding flood from false positives</p>
+			</section>
+
+			<section>
+				<h3>Methods for</h3>
+				<h5>Approximate String Matching</h5>
+				<ul>
+					<li class="fragment" data-fragment-index="1">
+						01*0 <small>[1]</small>: seeds with two exact parts (0s) separated by parts with one error (1s)
+					</li>
+					<li class="fragment" data-fragment-index="2">
+						Optimal search schemes <small>[2]</small>: optimal number of lookups in a bidirectional FM-index
+					</li>
+				</ul>
+				<p class="fragment">search patterns of $[1]\subset[2]$.</p>
+
+				<p class="footnote fragment" data-fragment-index="1">[1] Vroland, Christophe, et al. "Approximate search
+					of short patterns with high
+					error rates using the 01⁎0 lossless seeds."
+					<em>Journal of Discrete Algorithms 37</em> (2016): 3-16.
+				</p>
+				<p class="footnote fragment" data-fragment-index="2">[2] Kianfar, Kiavash, et al. "Optimum Search
+					Schemes for Approximate String Matching
+					Using Bidirectional FM-Index."
+					<em>arXiv preprint arXiv:1711.02035</em> (2017)
+				</p>
+
+			</section>
+
+			<section>
+				<h5>Methods for Approximate String Matching</h5>
+				<p>[1]'s main lemma: All strings within $n$-editions neighborhood of a query pattern can be divided in
+					$n+2$ parts, ensuring
+					that:</p>
+				<ul>
+					<li>2 parts are exact matches of their corresponding parts in the pattern</li>
+					<li>These exact matches frame 0 to $n$ parts with exactly one error</li>
+				</ul>
+				<p class="footnote">[1] Vroland, Christophe, et al. "Approximate search
+					of short patterns with high
+					error rates using the 01⁎0 lossless seeds."
+					<em>Journal of Discrete Algorithms 37</em> (2016): 3-16.
+				</p>
+			</section>
+
+			<section>
+				<h5>Methods for Approximate String Matching</h5>
+				<p>[1]'s main lemma (example)</p>
+				<p>TODO: [1]'s example figure</p>
+				<p class="footnote">[1] Vroland, Christophe, et al. "Approximate search
+					of short patterns with high
+					error rates using the 01⁎0 lossless seeds."
+					<em>Journal of Discrete Algorithms 37</em> (2016): 3-16.
+				</p>
+			</section>
+
+			<section>
+				<h5>Goals:</h5>
+				<ul>
+					<li>Practical implementation of ASM for large datasets<br /><small class="fragment">⇒ targeting
+							Quentin's application while being reusable for other projects</small></li>
+					<li class="fragment">Specialized (simpler): a single error is tolerated <small>⇒
+							divide seeds in 1+2 parts/blocks</small></li>
+					<li class="fragment">Preserve sensibility: short seeds $\simeq 15$-mer</li>
+					<li class="fragment">No full text index: never go back to the text</li>
+				</ul>
+				<aside class="notes">
+					<ul>
+						<li>
+							SeqAn implements [2] but is not practical for mapping (exhaustive search)
+						</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section>
+				<h5>$\operatorname{lev}(\cdot,\cdot)=1$ approximate matches</h5>
+				<p>Find $3k$-mer seeds on target matching the $\left(3k+\{-1,0,1\}\right)$-mer query pattern
+					with at most 1 InDel or substitution</p>
+				<div class="fragment">
+					<p>3 parts patterns: 2 exact matches framing</p>
+					<ol>
+						<li>1 exact match: 000</li>
+						<li>0 approximate match: 100, 001</li>
+						<li>1 approximate match: 010</li>
+					</ol>
+				</div>
+				<p class="fragment">1<sup>st</sup> and 2<sup>nd</sup> case are covered by $2k$-mer exact matches (00
+					queries)</p>
+				<aside class="notes">
+					<ul>
+						<li>
+							Note that the query pattern is of varying length, rather than the seeds
+						</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section>
+				<h5>General idea</h5>
+				<p>Split all $3k$-seeds from the target text into $(b_1,b_2,b_3)$ equal parts.<br />Make a pair of
+					indexes for looking up a $(b'_1,b'_2,b'_3)$ query pattern: </p>
+				<ul>
+					<li class="fragment">00<span style="visibility:hidden">0</span>: $(b'_1, b'_2) \rightarrow \left[
+						pos \right]$</li>
+					<li class="fragment">010: $(b'_1, b'_3) \rightarrow \left[ (b_2, pos) \right]$</li>
+				</ul>
+			</section>
+
+			<section>
+				<h5>010 queries</h5>
+				<p>$(b'_1, b'_3) \rightarrow \left[ (b_2, pos) \right]$</p>
+				<ul>
+					<li>Filter $\left[ (b_2, pos) \right]$ results such that $\operatorname{lev}(b_2, b'_2)=1$</li>
+					<li class="fragment">$b'_2$ from query is varying in length: $k+\{-1,0,1\}$<br />Allows matches
+						with I/M/D errors<br />
+						⇒ three $b'_3$ are extracted from the query at differents positions
+					</li>
+				</ul>
+			</section>
+
+			<section data-transition="slide-in fade-out">
+				<h5>Indexing</h5>
+				<p style="visibility:hidden">Partition by $b_1$</p>
+				<p><span style="visibility:hidden">$\Omega^k$</span> pair<span style="visibility:hidden">s</span> of
+					indexes answering: </p>
+				<ul>
+					<li>00<span style="visibility:hidden">0</span>: $(b'_1, b'_2) \rightarrow \left[
+						pos \right]$</li>
+					<li>010: $(b'_1, b'_3) \rightarrow \left[ (b_2, pos) \right]$</li>
+				</ul>
+			</section>
+
+			<section data-transition="fade-in slide-out">
+				<h5>Indexing</h5>
+				<p>Partition by $b_1$</p>
+				<p>$\Omega^k$ pairs of indexes answering: </p>
+				<ul>
+					<li>00<span style="visibility:hidden">0</span>: $b'_2 \rightarrow \left[ pos \right]$</li>
+					<li>010: $b'_3 \rightarrow \left[ (b_2, pos) \right]$</li>
+				</ul>
+			</section>
+
+			<section>
+				<h5>Indexing</h5>
+				<p>Within each $b_1$-labeled partition, <br />link the two indexes:</p>
+				<ul>
+
+					<li>00<span style="visibility:hidden">0</span>: $b'_2 \rightarrow \left[ pos \right]$<br />
+						<span style="visibility:hidden">000:</span> $i \rightarrow (b_2, pos)$</li>
+					<li>010: $b_3 \rightarrow [ i ]$</li>
+				</ul>
+				<p>Where $i$s are numeric indices in $(b_2, pos)$ table</p>
+				<object class="onethird" data="assets/index_schema.svg"></object>
+			</section>
+
+			<section>
+				<h5>Data structure</h5>
+				<p>multimap from dense keys: $k \rightarrow [v]$</p>
+				<ul>
+					<li>Forward lookup</li>
+					<li>lookup values by indices: $i \rightarrow v$</li>
+					<li>lookup keys by indices: $i \rightarrow k$</li>
+				</ul>
+				<p class="fragment">yield: $i \rightarrow (k, v)$</p>
+				<aside class="notes">
+					<p>Transition: $k$ are our kmer, how do we store $(k, v)$ pairs without waisting space by repeating
+						the same $k$ ?</p>
+				</aside>
+			</section>
+
+			<section>
+				<h5>Data structure</h5>
+				<p>Implementation: </p>
+				<ul>
+					<li>Sort $(k,v)$ pairs by keys, then store <ul>
+							<li>values ordered by keys $f\colon i \rightarrow v$ </li>
+							<li>indices of first ocurrence of each key $g\colon k \rightarrow i_{k,0}$</li>
+						</ul>
+					<li>Forward lookup: $[f]^{g(k+1)}_{g(k)}$</li>
+					<li>lookup keys by indices: bissect $g$</li>
+					<p class="fragment">yield: $i \xrightarrow[]{g^{-1}, f} (k, v)$</p>
+				</ul>
+			</section>
+
+			<section>
+				<h5>Data structure</h5>
+				<p>Alternative implementation: rank/select</p>
+				<ul>
+					<li>Sort the $N$ $(k,v)$ pairs by keys, then store <ul>
+							<li>values ordered by keys $f\colon i \rightarrow v$ </li>
+							<li>A (succint) $N$-bits array with 1s delimiting the runs of constant $k$</li>
+						</ul>
+					<li>Forward lookup: $[f]^{\operatorname{select}(k+1)}_{\operatorname{select}(k)}$</li>
+					<li>lookup keys by indices: $\operatorname{rank}(i)$</li>
+					<p class="fragment">Slower: <small>rank/select doing bissections anyway. Succint representation is
+							not that useful since $f$ takes the majority of space in both cases</small></p>
+				</ul>
+			</section>
+
+			<section>
+				<h5>Data structures</h5>
+				<p>Recap</p>
+				<ul>
+					<li>Partition seeds by their $b_1$ prefixes</li>
+					<li>Uses two multimaps by partition<ul>
+							<li>One for $b'_2 \rightarrow [pos]$ (00 lookups),<br /> along with $i \rightarrow (b_2,
+								pos)$ lookups </li>
+							<li>One for $b'_3 \rightarrow [i]$</li>
+							<li>Combining them, we get the 010 lookups: $b'_3 \rightarrow \left[(b_2, pos)\right]$</li>
+							<li>The first multimap allocates an array for accelerating the bissection</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h5>Validation</h5>
+			</section>
+
+			<section>
+				<h5>Performance</h5>
+			</section>
+
+			<section>
+				<h2>Conclusion</h2>
+				<ul>
+					<li>Software library for specialized 01⁎0 seed indexing</li>
+					<li>Re-usable key-dense multimaps that can be linked together</li>
+					<li>Failled to use succint indexes. <small>(Succint permutations encoding ?)</small></li>
+				</ul>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="../slides_common/lib/js/head.min.js"></script>
+	<script src="../slides_common/js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			history: true,
+			controls: false,
+			math: {
+				mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+				config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			},
+			dependencies: [
+				{ src: '../slides_common/plugin/math/math.js', async: true },
+				{ src: '../slides_common/plugin/notes/notes.js', async: true },
+
+			]
+		});
+		Reveal.configure({ slideNumber: 'c/t' });
+	</script>
+</body>
+
+</html>
