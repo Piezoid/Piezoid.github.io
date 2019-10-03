@@ -90,7 +90,7 @@
 				<p class="fragment">⇒ Need better sensibility, while avoiding flood from false positives</p>
 			</section>
 
-			<section>
+			<!-- 			<section>
 				<h3>Methods for</h3>
 				<h5>Approximate String Matching</h5>
 				<ul>
@@ -114,9 +114,43 @@
 					<em>arXiv preprint arXiv:1711.02035</em> (2017)
 				</p>
 
-			</section>
+			</section> -->
+
+
 
 			<section>
+				<h5>Goals:</h5>
+				<ul>
+					<li>Practical implementation of ASM for large datasets<br /><small class="fragment">⇒ targeting
+							Quentin's application while being reusable for other projects</small></li>
+					<li class="fragment">Specialized (simpler): a single error is tolerated
+						<!-- <small>⇒
+							divide seeds in 1+2 parts/blocks</small> -->
+					</li>
+					<li class="fragment">Preserve sensibility: short seeds $\simeq 15$-mer</li>
+					<li class="fragment">No full text index: never go back to the text</li>
+				</ul>
+				<aside class="notes">
+					<ul>
+						<li>
+							SeqAn implements [2] but is not practical for mapping (exhaustive search)
+						</li>
+					</ul>
+				</aside>
+			</section>
+
+			<!-- 			<section>
+				<h5>Methods for Approximate String Matching</h5>
+				<p>[1]'s main lemma (example)</p>
+				<p>TODO: [1]'s example figure</p>
+				<p class="footnote">[1] Vroland, Christophe, et al. "Approximate search
+					of short patterns with high
+					error rates using the 01⁎0 lossless seeds."
+					<em>Journal of Discrete Algorithms 37</em> (2016): 3-16.
+				</p>
+			</section> -->
+
+			<section data-transition="slide-in fade-out">
 				<h5>Methods for Approximate String Matching</h5>
 				<p>[1]'s main lemma: All strings within $n$-editions neighborhood of a query pattern can be divided in
 					$n+2$ parts, ensuring
@@ -132,10 +166,15 @@
 				</p>
 			</section>
 
-			<section>
-				<h5>Methods for Approximate String Matching</h5>
-				<p>[1]'s main lemma (example)</p>
-				<p>TODO: [1]'s example figure</p>
+			<section data-transition="fade-in fade-out">
+				<h5>$\operatorname{lev}(\cdot,\cdot)=1$ approximate matches</h5>
+				<p>[1]'s main lemma: All strings within $n$-editions neighborhood of a query pattern can be divided in
+					$\mathbf{1}+2$ parts, ensuring
+					that:</p>
+				<ul>
+					<li>2 parts are exact matches of their corresponding parts in the pattern</li>
+					<li>These exact matches frame 0 to $\mathbf{1}$ parts with exactly one error</li>
+				</ul>
 				<p class="footnote">[1] Vroland, Christophe, et al. "Approximate search
 					of short patterns with high
 					error rates using the 01⁎0 lossless seeds."
@@ -143,36 +182,56 @@
 				</p>
 			</section>
 
-			<section>
-				<h5>Goals:</h5>
+			<section data-transition="fade-in fade-out">
+				<h5>$\operatorname{lev}(\cdot,\cdot)=1$ approximate matches</h5>
+				<p>Find $3k$-mer seeds on target matching the query pattern
+					with at most 1 InDel or substitution</p>
+				<p>3 parts patterns: 2 exact matches framing either:</p>
 				<ul>
-					<li>Practical implementation of ASM for large datasets<br /><small class="fragment">⇒ targeting
-							Quentin's application while being reusable for other projects</small></li>
-					<li class="fragment">Specialized (simpler): a single error is tolerated <small>⇒
-							divide seeds in 1+2 parts/blocks</small></li>
-					<li class="fragment">Preserve sensibility: short seeds $\simeq 15$-mer</li>
-					<li class="fragment">No full text index: never go back to the text</li>
+					<li>1 exact match: 000</li>
+					<li>0 approximate match: 100, 001</li>
+					<li>1 approximate match: 010</li>
 				</ul>
-				<aside class="notes">
-					<ul>
-						<li>
-							SeqAn implements [2] but is not practical for mapping (exhaustive search)
-						</li>
-					</ul>
-				</aside>
+			</section>
+
+			<section data-transition="fade-in slide-out">
+				<h5>$\operatorname{lev}(\cdot,\cdot)=1$ approximate matches</h5>
+				<object class="twothird" data="assets/seed_kinds.svg"></object>
 			</section>
 
 			<section>
+				<h5>000, 001, 100 $\implies$ 00 matches</h5>
+				<object class="twothird" data="assets/00_seeds.svg"></object>
+				<p>000, 001, 100 cases are covered by $2k$-mer exact matches from 00
+					queries</p>
+			</section>
+
+			<section data-transition="slide-in fade-out">
+				<h5>010 matches</h5>
+				<object class="twothird" data="assets/010_seeds0.svg"></object>
+				<small style="visibility:hidden">Find $3k$-mer seeds on target matching the
+					$\left(3k+\{-1,0,1\}\right)$-mer query pattern
+					with at most 1 InDel or substitution</small>
+			</section>
+
+			<section data-transition="fade-in slide-out">
+				<h5>010 matches</h5>
+				<object class="twothird" data="assets/010_seeds.svg"></object>
+				<small>Find $3k$-mer seeds on target matching the $\left(3k+\{-1,0,1\}\right)$-mer query pattern
+					with at most 1 InDel or substitution</small>
+			</section>
+
+			<!-- 			<section>
 				<h5>$\operatorname{lev}(\cdot,\cdot)=1$ approximate matches</h5>
 				<p>Find $3k$-mer seeds on target matching the $\left(3k+\{-1,0,1\}\right)$-mer query pattern
 					with at most 1 InDel or substitution</p>
 				<div class="fragment">
-					<p>3 parts patterns: 2 exact matches framing</p>
-					<ol>
+					<p>3 parts patterns: 2 exact matches framing either:</p>
+					<ul>
 						<li>1 exact match: 000</li>
 						<li>0 approximate match: 100, 001</li>
 						<li>1 approximate match: 010</li>
-					</ol>
+					</ul>
 				</div>
 				<p class="fragment">1<sup>st</sup> and 2<sup>nd</sup> case are covered by $2k$-mer exact matches (00
 					queries)</p>
@@ -183,7 +242,7 @@
 						</li>
 					</ul>
 				</aside>
-			</section>
+			</section> -->
 
 			<section>
 				<h5>General idea</h5>
@@ -230,7 +289,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section data-transition="slide-in fade-out">
 				<h5>Indexing</h5>
 				<p>Within each $b_1$-labeled partition, <br />link the two indexes:</p>
 				<ul>
@@ -241,6 +300,17 @@
 				</ul>
 				<p>Where $i$s are numeric indices in $(b_2, pos)$ table</p>
 				<object class="onethird" data="assets/index_schema.svg"></object>
+			</section>
+
+			<section data-transition="fade-in slide-out">
+				<h5>Indexing</h5>
+				<p>Within each $b_1$-labeled partition, <br />link the two indexes:</p>
+				<ul>
+
+					<li>00<span style="visibility:hidden">0</span>: $b'_2 \rightarrow \left[ pos \right]$<br />
+						<span style="visibility:hidden">000:</span> $i \rightarrow (b_2, pos)$</li>
+					<li>010: $b_3 \rightarrow [ i ]$</li>
+				</ul>
 			</section>
 
 			<section>
