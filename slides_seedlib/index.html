@@ -123,7 +123,7 @@
 				<ul>
 					<li>Practical implementation of ASM for large datasets<br /><small class="fragment">⇒ targeting
 							Quentin's application while being reusable for other projects</small></li>
-					<li class="fragment">Specialized (simpler): a single error is tolerated
+					<li class="fragment">Specialized <small>(simpler than OSS)</small>: a single error is tolerated
 						<!-- <small>⇒
 							divide seeds in 1+2 parts/blocks</small> -->
 					</li>
@@ -157,7 +157,7 @@
 					that:</p>
 				<ul>
 					<li>2 parts are exact matches of their corresponding parts in the pattern</li>
-					<li>These exact matches frame 0 to $n$ parts with exactly one error</li>
+					<li>These exact matches frame 0 to $n$ parts, each with exactly one error</li>
 				</ul>
 				<p class="footnote">[1] Vroland, Christophe, et al. "Approximate search
 					of short patterns with high
@@ -173,7 +173,7 @@
 					that:</p>
 				<ul>
 					<li>2 parts are exact matches of their corresponding parts in the pattern</li>
-					<li>These exact matches frame 0 to $\mathbf{1}$ parts with exactly one error</li>
+					<li>These exact matches frame 0 to $\mathbf{1}$ parts, each with exactly one error</li>
 				</ul>
 				<p class="footnote">[1] Vroland, Christophe, et al. "Approximate search
 					of short patterns with high
@@ -328,6 +328,16 @@
 				</aside>
 			</section>
 
+			<section data-transition="slide-in fade-out">
+				<h5>Data structure $k \rightarrow [v]$</h5>
+				<object class="onethird" data="assets/multimap1.svg"></object>
+			</section>
+
+			<section data-transition="slide-out fade-in">
+				<h5>Data structure $k \rightarrow [v]$</h5>
+				<object class="onethird" data="assets/multimap2.svg"></object>
+			</section>
+
 			<section>
 				<h5>Data structure</h5>
 				<p>Implementation: </p>
@@ -358,8 +368,13 @@
 			</section>
 
 			<section>
-				<h5>Data structures</h5>
-				<p>Recap</p>
+				<h5>Recap</h5>
+				<small>Example of 010 query for CGA AGT ATA :</small>
+				<object class="twothird" data="assets/ex_query.svg"></object>
+			</section>
+
+			<section>
+				<h5>Recap</h5>
 				<ul>
 					<li>Partition seeds by their $b_1$ prefixes</li>
 					<li>Uses two multimaps by partition<ul>
@@ -375,6 +390,9 @@
 
 			<section>
 				<h5>Validation</h5>
+				<p>Naive seed and extend implementation in Python.</p>
+				<p>The test runner generate a random reference sequence and simulated reads. Then, mappings from both implementations are compared.</p>
+				<p>$\rightarrow$ Same mappings, with the difference that C++ implentation misses $k$ $2k$-mers at the end of reads.</p>
 			</section>
 
 			<section>
@@ -385,7 +403,7 @@
 				<h2>Conclusion</h2>
 				<ul>
 					<li>Software library for specialized 01⁎0 seed indexing</li>
-					<li>Re-usable key-dense multimaps that can be linked together</li>
+					<li>Re-usable key-dense multimaps that can be linked together <small>(based on <code>sdsl::intvector&lt;&gt;</code>)</small></li>
 					<li>Failled to use succint indexes. <small>(Succint permutations encoding ?)</small></li>
 				</ul>
 			</section>
@@ -409,7 +427,21 @@
 				{ src: '../slides_common/plugin/math/math.js', async: true },
 				{ src: '../slides_common/plugin/notes/notes.js', async: true },
 
-			]
+			],
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: 960,
+			height: 700,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5
+
 		});
 		Reveal.configure({ slideNumber: 'c/t' });
 	</script>
