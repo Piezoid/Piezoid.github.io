@@ -391,19 +391,106 @@
 			<section>
 				<h5>Validation</h5>
 				<p>Naive seed and extend implementation in Python.</p>
-				<p>The test runner generate a random reference sequence and simulated reads. Then, mappings from both implementations are compared.</p>
-				<p>$\rightarrow$ Same mappings, with the difference that C++ implentation misses $k$ $2k$-mers at the end of reads.</p>
+				<p>The test runner generate a random reference sequence and simulated reads. Then, mappings from both
+					implementations are compared.</p>
+				<p>$\rightarrow$ Same mappings, with the difference that C++ implentation misses $k$ $2k$-mers at the
+					end of reads.</p>
 			</section>
 
 			<section>
 				<h5>Performance</h5>
+				<small>Dataset BYK_CNA_ONT_1_FAH60542_A: nanopore cDNA, avg length: 697bp<br />&nbsp</small>
+				<table style="font-size: 40%;">
+					<thead>
+						<tr style="text-align: right;">
+							<th></th>
+							<th>reads</th>
+							<th>kmers<br />(M)</th>
+							<th>indexing<br />time (s)</th>
+							<th>index size</th>
+							<th>00 results<br />(M)</th>
+							<th>010 results<br />(M)</th>
+							<th>query time<br />(s)</th>
+							<th>time per<br />match (µs)</th>
+						</tr>
+						<tr>
+							<th>Bench</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>1000</th>
+							<td>1000</td>
+							<td>0.64</td>
+							<td>0.48</td>
+							<td>10.37</td>
+							<td>0.28</td>
+							<td>2.54</td>
+							<td>0.45</td>
+							<td>160.43</td>
+						</tr>
+						<tr>
+							<th>10000</th>
+							<td>10000</td>
+							<td>6.82</td>
+							<td>1.60</td>
+							<td>38.00</td>
+							<td>218.18</td>
+							<td>27.91</td>
+							<td>19.22</td>
+							<td>78.10</td>
+						</tr>
+						<tr>
+							<th>10000, batch queries</th>
+							<td>10000</td>
+							<td>6.82</td>
+							<td>1.61</td>
+							<td>38.00</td>
+							<td>216.26</td>
+							<td>27.83</td>
+							<td>11.88</td>
+							<td>48.69</td>
+						</tr>
+						<tr>
+							<th>10000, batch queries, E&gt;2.5bits</th>
+							<td>10000</td>
+							<td>6.44</td>
+							<td>1.47</td>
+							<td>35.86</td>
+							<td>157.78</td>
+							<td>15.30</td>
+							<td>9.68</td>
+							<td>55.92</td>
+						</tr>
+						<tr>
+							<th>100000</th>
+							<td>100000</td>
+							<td>76.55</td>
+							<td>15.68</td>
+							<td>412.00</td>
+							<td>25302.13</td>
+							<td>3144.67</td>
+							<td>1055.83</td>
+							<td>37.12</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 
 			<section>
 				<h2>Conclusion</h2>
 				<ul>
 					<li>Software library for specialized 01⁎0 seed indexing</li>
-					<li>Re-usable key-dense multimaps that can be linked together <small>(based on <code>sdsl::intvector&lt;&gt;</code>)</small></li>
+					<li>Re-usable key-dense multimaps that can be linked together <small>(based on
+							<code>sdsl::intvector&lt;&gt;</code>)</small></li>
 					<li>Failled to use succint indexes. <small>(Succint permutations encoding ?)</small></li>
 				</ul>
 			</section>
